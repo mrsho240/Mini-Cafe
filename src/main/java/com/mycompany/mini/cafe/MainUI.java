@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.mini.cafe;
-
+import javax.swing.Icon;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 /**
  *
  * @author chara
@@ -15,8 +17,27 @@ public class MainUI extends javax.swing.JFrame {
     /**
      * Creates new form MainUI
      */
+
     public MainUI() {
+        // Initialize initComponents 
         initComponents();
+        setTitle("Mini-Cafe");
+        // Initialize Image 
+        Icon bgLogo = LgnIMG.getIcon();
+        Icon logo = logoIMG.getIcon();
+        Icon rlgn_image1 = r_lgnBG.getIcon();
+        
+        ImageIcon logoBG = (ImageIcon)bgLogo;
+        ImageIcon Cafe = (ImageIcon)logo;
+        ImageIcon rlgn_imageicon = (ImageIcon)rlgn_image1;
+        
+        Image imageMem = logoBG.getImage().getScaledInstance(LgnIMG.getWidth(), LgnIMG.getHeight(), Image.SCALE_SMOOTH);
+        Image rlgn_mem = rlgn_imageicon.getImage().getScaledInstance(r_lgnBG.getWidth(), r_lgnBG.getHeight(), Image.SCALE_SMOOTH);
+        Image logoMem = Cafe.getImage().getScaledInstance(logoIMG.getWidth(), logoIMG.getHeight(), Image.SCALE_SMOOTH);
+        
+        LgnIMG.setIcon(new ImageIcon(imageMem));
+        logoIMG.setIcon(new ImageIcon(logoMem));
+        r_lgnBG.setIcon(new ImageIcon(rlgn_mem));
     }
 
     /**
@@ -28,21 +49,82 @@ public class MainUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        username_field = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        password_field = new javax.swing.JTextField();
+        btnLogin = new javax.swing.JButton();
+        r_lgnBG = new javax.swing.JLabel();
+        logoIMG = new javax.swing.JLabel();
+        LgnIMG = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(216, 181, 151));
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(216, 181, 151));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(246, 235, 218));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("Login");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 70, 40));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Username");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+        jPanel2.add(username_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 280, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setText("Password");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, -1, -1));
+        jPanel2.add(password_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 280, 30));
+
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 110, 50));
+
+        r_lgnBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg-image.png"))); // NOI18N
+        jPanel2.add(r_lgnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 450, 774));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, -10, 450, 760));
+
+        logoIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
+        jPanel1.add(logoIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 290, 290));
+
+        LgnIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loginIMG.jpg"))); // NOI18N
+        jPanel1.add(LgnIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 750));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +152,17 @@ public class MainUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LgnIMG;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel logoIMG;
+    private javax.swing.JTextField password_field;
+    private javax.swing.JLabel r_lgnBG;
+    private javax.swing.JTextField username_field;
     // End of variables declaration//GEN-END:variables
 }
