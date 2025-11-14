@@ -11,12 +11,24 @@ package com.mycompany.mini.cafe;
 public class MainMenu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainMenu.class.getName());
-
+    private String userRole;
     /**
      * Creates new form MainMenu
      */
     public MainMenu() {
         initComponents();
+    }
+    public MainMenu(String role) {
+        initComponents();
+        this.userRole = role;
+        System.out.print(userRole);
+        if (this.userRole.equals("user")){
+        btnAddmember.setVisible(false);
+        btnMenu.setVisible(false);
+        }else{
+            btnAddmember.setVisible(true);
+            btnMenu.setVisible(true);
+        }
     }
 
     /**
@@ -33,7 +45,7 @@ public class MainMenu extends javax.swing.JFrame {
         title = new javax.swing.JLabel();
         btnTable = new com.mycompany.UI.RoundButton();
         btnMenu = new com.mycompany.UI.RoundButton();
-        btnAddmenu = new com.mycompany.UI.RoundButton();
+        btnAddmember = new com.mycompany.UI.RoundButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(216, 181, 151));
@@ -62,10 +74,20 @@ public class MainMenu extends javax.swing.JFrame {
         );
 
         btnTable.setText("Table");
+        btnTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTableActionPerformed(evt);
+            }
+        });
 
         btnMenu.setText("Menu");
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
 
-        btnAddmenu.setText("Add Member");
+        btnAddmember.setText("Add Member");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,7 +100,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAddmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddmember, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,7 +111,7 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnTable, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                     .addComponent(btnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAddmenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAddmember, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(360, Short.MAX_VALUE))
         );
 
@@ -106,6 +128,20 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
+        // TODO add your handling code here:
+        fmTable tablePage = new fmTable(this.userRole);
+        tablePage.show(); // <-- ใช้ .setVisible(true)
+        this.dispose();
+    }//GEN-LAST:event_btnTableActionPerformed
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+        // TODO add your handling code here:
+        fmMenu menuPage = new fmMenu(this.userRole);
+        menuPage.show(); // <-- ใช้ .setVisible(true)
+        this.dispose();
+    }//GEN-LAST:event_btnMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,7 +169,7 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.UI.RoundButton btnAddmenu;
+    private com.mycompany.UI.RoundButton btnAddmember;
     private com.mycompany.UI.RoundButton btnMenu;
     private com.mycompany.UI.RoundButton btnTable;
     private javax.swing.JPanel jPanel1;

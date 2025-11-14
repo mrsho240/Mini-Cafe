@@ -53,7 +53,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnMenu" min="-2" pref="95" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnAddmenu" min="-2" pref="95" max="-2" attributes="0"/>
+                  <Component id="btnAddmember" min="-2" pref="95" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -66,7 +66,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnTable" alignment="0" pref="89" max="32767" attributes="0"/>
                       <Component id="btnMenu" alignment="0" max="32767" attributes="0"/>
-                      <Component id="btnAddmenu" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnAddmember" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="360" max="32767" attributes="0"/>
               </Group>
@@ -113,13 +113,19 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Table"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTableActionPerformed"/>
+          </Events>
         </Component>
         <Component class="com.mycompany.UI.RoundButton" name="btnMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Menu"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="com.mycompany.UI.RoundButton" name="btnAddmenu">
+        <Component class="com.mycompany.UI.RoundButton" name="btnAddmember">
           <Properties>
             <Property name="text" type="java.lang.String" value="Add Member"/>
           </Properties>

@@ -6,6 +6,7 @@ package com.mycompany.mini.cafe;
 import javax.swing.Icon;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 /**
  *
  * @author chara
@@ -17,6 +18,7 @@ public class MainUI extends javax.swing.JFrame {
     /**
      * Creates new form MainUI
      */
+//    private MainMenu mainPage;
 
     public MainUI() {
         // Initialize initComponents 
@@ -56,7 +58,7 @@ public class MainUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         username_field = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        password_field = new javax.swing.JTextField();
+        password_field = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         r_lgnBG = new javax.swing.JLabel();
         logoIMG = new javax.swing.JLabel();
@@ -124,6 +126,22 @@ public class MainUI extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        String username = username_field.getText(), 
+        password = password_field.getText(),
+        role;
+        if(username.equals("admin") && password.equals("ad123")){
+            role = "admin";
+            MainMenu mainmenu = new MainMenu(role);
+            mainmenu.show();
+            this.dispose();
+        }else if(username.equals("user") && password.equals("user123")){
+            role = "user";
+            MainMenu mainmenu = new MainMenu(role);
+            mainmenu.show();
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Wrong Username or Password");
+        }   
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -161,7 +179,7 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel logoIMG;
-    private javax.swing.JTextField password_field;
+    private javax.swing.JPasswordField password_field;
     private javax.swing.JLabel r_lgnBG;
     private javax.swing.JTextField username_field;
     // End of variables declaration//GEN-END:variables
