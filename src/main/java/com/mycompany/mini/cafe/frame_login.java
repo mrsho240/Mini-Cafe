@@ -3,24 +3,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.mini.cafe;
+
 import javax.swing.Icon;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author chara
  */
-public class MainUI extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainUI.class.getName());
+public class frame_login extends javax.swing.JFrame {
+
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_login.class.getName());
 
     /**
      * Creates new form MainUI
      */
 //    private MainMenu mainPage;
-
-    public MainUI() {
+    public frame_login() {
         // Initialize initComponents 
         initComponents();
         setTitle("Mini-Cafe");
@@ -28,15 +29,15 @@ public class MainUI extends javax.swing.JFrame {
         Icon bgLogo = LgnIMG.getIcon();
         Icon logo = logoIMG.getIcon();
         Icon rlgn_image1 = r_lgnBG.getIcon();
-        
-        ImageIcon logoBG = (ImageIcon)bgLogo;
-        ImageIcon Cafe = (ImageIcon)logo;
-        ImageIcon rlgn_imageicon = (ImageIcon)rlgn_image1;
-        
+
+        ImageIcon logoBG = (ImageIcon) bgLogo;
+        ImageIcon Cafe = (ImageIcon) logo;
+        ImageIcon rlgn_imageicon = (ImageIcon) rlgn_image1;
+
         Image imageMem = logoBG.getImage().getScaledInstance(LgnIMG.getWidth(), LgnIMG.getHeight(), Image.SCALE_SMOOTH);
         Image rlgn_mem = rlgn_imageicon.getImage().getScaledInstance(r_lgnBG.getWidth(), r_lgnBG.getHeight(), Image.SCALE_SMOOTH);
         Image logoMem = Cafe.getImage().getScaledInstance(logoIMG.getWidth(), logoIMG.getHeight(), Image.SCALE_SMOOTH);
-        
+
         LgnIMG.setIcon(new ImageIcon(imageMem));
         logoIMG.setIcon(new ImageIcon(logoMem));
         r_lgnBG.setIcon(new ImageIcon(rlgn_mem));
@@ -125,23 +126,10 @@ public class MainUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
-        String username = username_field.getText(), 
-        password = password_field.getText(),
-        role;
-        if(username.equals("admin") && password.equals("ad123")){
-            role = "admin";
-            MainMenu mainmenu = new MainMenu(role);
-            mainmenu.show();
-            this.dispose();
-        }else if(username.equals("user") && password.equals("user123")){
-            role = "user";
-            MainMenu mainmenu = new MainMenu(role);
-            mainmenu.show();
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Wrong Username or Password");
-        }   
+
+        frame_selection frame_selection = new frame_selection();
+        frame_selection.show();
+        this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -166,7 +154,7 @@ public class MainUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new MainUI().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frame_login().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
