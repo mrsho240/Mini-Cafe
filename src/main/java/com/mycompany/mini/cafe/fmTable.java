@@ -11,17 +11,17 @@ package com.mycompany.mini.cafe;
 public class fmTable extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(fmTable.class.getName());
-    private String userRole;
+    private frame_selection mainMenu;
+    private fmTableMenu menuPage = null;
     /**
      * Creates new form fmTable
      */
     public fmTable() {
         initComponents();
     }
-    public fmTable(String role) {
+    public fmTable(frame_selection mainMenu) {
         initComponents();
-        this.userRole = role;
-        System.out.print(userRole);
+        this.mainMenu = mainMenu;
 
     }
 
@@ -41,50 +41,51 @@ public class fmTable extends javax.swing.JFrame {
         labState = new javax.swing.JLabel();
         labTable = new javax.swing.JLabel();
         labPrice = new javax.swing.JLabel();
-        btnAdd = new javax.swing.JButton();
+        btnAddtble1 = new javax.swing.JButton();
         btnBill = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAddtble2 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnAddtble3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        btnAddtble4 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        btnAddtble5 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jButton9 = new javax.swing.JButton();
+        btnAddtble6 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
+        btnAddtble7 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
+        btnAddtble8 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
+        Back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,10 +120,10 @@ public class fmTable extends javax.swing.JFrame {
 
         labPrice.setText("Price :");
 
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnAddtble1.setText("Add");
+        btnAddtble1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnAddtble1ActionPerformed(evt);
             }
         });
 
@@ -142,7 +143,7 @@ public class fmTable extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnAdd)
+                        .addComponent(btnAddtble1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBill)
                         .addGap(6, 6, 6))
@@ -160,7 +161,7 @@ public class fmTable extends javax.swing.JFrame {
                 .addComponent(labPrice)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
+                    .addComponent(btnAddtble1)
                     .addComponent(btnBill))
                 .addGap(26, 26, 26))
         );
@@ -172,7 +173,12 @@ public class fmTable extends javax.swing.JFrame {
 
         jLabel9.setText("Table :");
 
-        jButton1.setText("Add");
+        btnAddtble2.setText("Add");
+        btnAddtble2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddtble2ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Check Bill");
 
@@ -192,7 +198,7 @@ public class fmTable extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btnAddtble2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton2))
                             .addComponent(jLabel9))
@@ -210,7 +216,7 @@ public class fmTable extends javax.swing.JFrame {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnAddtble2)
                     .addComponent(jButton2))
                 .addGap(26, 26, 26))
         );
@@ -219,7 +225,12 @@ public class fmTable extends javax.swing.JFrame {
 
         jLabel3.setText("Empty");
 
-        jButton3.setText("Add");
+        btnAddtble3.setText("Add");
+        btnAddtble3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddtble3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Check Bill");
 
@@ -241,7 +252,7 @@ public class fmTable extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel11)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(btnAddtble3)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -257,7 +268,7 @@ public class fmTable extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(36, 36, 36)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                    .addComponent(btnAddtble3)
                     .addComponent(jButton4))
                 .addGap(24, 24, 24))
         );
@@ -268,7 +279,12 @@ public class fmTable extends javax.swing.JFrame {
 
         jLabel13.setText("Table :");
 
-        jButton5.setText("Add");
+        btnAddtble4.setText("Add");
+        btnAddtble4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddtble4ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Check Bill");
 
@@ -288,7 +304,7 @@ public class fmTable extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel14)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jButton5)
+                                .addComponent(btnAddtble4)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton6))
                             .addComponent(jLabel13))
@@ -306,7 +322,7 @@ public class fmTable extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(btnAddtble4)
                     .addComponent(jButton6))
                 .addGap(22, 22, 22))
         );
@@ -315,7 +331,12 @@ public class fmTable extends javax.swing.JFrame {
 
         jLabel5.setText("Empty");
 
-        jButton7.setText("Add");
+        btnAddtble5.setText("Add");
+        btnAddtble5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddtble5ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Check Bill");
 
@@ -337,7 +358,7 @@ public class fmTable extends javax.swing.JFrame {
                     .addComponent(jLabel16)
                     .addComponent(jLabel15)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jButton7)
+                        .addComponent(btnAddtble5)
                         .addGap(18, 18, 18)
                         .addComponent(jButton8)))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -353,7 +374,7 @@ public class fmTable extends javax.swing.JFrame {
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton7)
+                    .addComponent(btnAddtble5)
                     .addComponent(jButton8))
                 .addGap(21, 21, 21))
         );
@@ -362,7 +383,12 @@ public class fmTable extends javax.swing.JFrame {
 
         jLabel6.setText("Empty");
 
-        jButton9.setText("Add");
+        btnAddtble6.setText("Add");
+        btnAddtble6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddtble6ActionPerformed(evt);
+            }
+        });
 
         jButton10.setText("Check Bill");
 
@@ -384,7 +410,7 @@ public class fmTable extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(jLabel17)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jButton9)
+                        .addComponent(btnAddtble6)
                         .addGap(18, 18, 18)
                         .addComponent(jButton10)))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -400,7 +426,7 @@ public class fmTable extends javax.swing.JFrame {
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
+                    .addComponent(btnAddtble6)
                     .addComponent(jButton10))
                 .addGap(21, 21, 21))
         );
@@ -409,7 +435,12 @@ public class fmTable extends javax.swing.JFrame {
 
         jLabel7.setText("Empty");
 
-        jButton11.setText("Add");
+        btnAddtble7.setText("Add");
+        btnAddtble7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddtble7ActionPerformed(evt);
+            }
+        });
 
         jButton12.setText("Check Bill");
 
@@ -431,7 +462,7 @@ public class fmTable extends javax.swing.JFrame {
                     .addComponent(jLabel20)
                     .addComponent(jLabel19)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jButton11)
+                        .addComponent(btnAddtble7)
                         .addGap(18, 18, 18)
                         .addComponent(jButton12)))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -447,7 +478,7 @@ public class fmTable extends javax.swing.JFrame {
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton11)
+                    .addComponent(btnAddtble7)
                     .addComponent(jButton12))
                 .addGap(20, 20, 20))
         );
@@ -458,7 +489,12 @@ public class fmTable extends javax.swing.JFrame {
 
         jLabel21.setText("Table :");
 
-        jButton13.setText("Add");
+        btnAddtble8.setText("Add");
+        btnAddtble8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddtble8ActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("Check Bill");
 
@@ -479,7 +515,7 @@ public class fmTable extends javax.swing.JFrame {
                             .addComponent(jLabel21)
                             .addComponent(jLabel22)
                             .addGroup(jPanel10Layout.createSequentialGroup()
-                                .addComponent(jButton13)
+                                .addComponent(btnAddtble8)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton14)))
                         .addGap(0, 10, Short.MAX_VALUE)))
@@ -496,10 +532,17 @@ public class fmTable extends javax.swing.JFrame {
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton13)
+                    .addComponent(btnAddtble8)
                     .addComponent(jButton14))
                 .addGap(22, 22, 22))
         );
+
+        Back.setText("Back");
+        Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -509,22 +552,25 @@ public class fmTable extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Back)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -543,7 +589,9 @@ public class fmTable extends javax.swing.JFrame {
                     .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Back)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -560,19 +608,83 @@ public class fmTable extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddtble1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble1ActionPerformed
         // TODO add your handling code here:
-        fmMenu menuPage = new fmMenu(this.userRole);
-        menuPage.show();
-        this.dispose();
-    }//GEN-LAST:event_btnAddActionPerformed
+        if(menuPage == null){
+            menuPage = new fmTableMenu(this);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+    }//GEN-LAST:event_btnAddtble1ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
-//        frame_selection main = new frame_selection(this.userRole);    
-//        main.show();
-//        this.dispose();
+        this.setVisible(false);
+        mainMenu.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
+
+    private void btnAddtble2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble2ActionPerformed
+        // TODO add your handling code here:
+        if(menuPage == null){
+            menuPage = new fmTableMenu(this);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+    }//GEN-LAST:event_btnAddtble2ActionPerformed
+
+    private void btnAddtble3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble3ActionPerformed
+        // TODO add your handling code here:
+        if(menuPage == null){
+            menuPage = new fmTableMenu(this);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+    }//GEN-LAST:event_btnAddtble3ActionPerformed
+
+    private void btnAddtble5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble5ActionPerformed
+        // TODO add your handling code here:
+        if(menuPage == null){
+            menuPage = new fmTableMenu(this);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+    }//GEN-LAST:event_btnAddtble5ActionPerformed
+
+    private void btnAddtble6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble6ActionPerformed
+        // TODO add your handling code here:
+        if(menuPage == null){
+            menuPage = new fmTableMenu(this);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+    }//GEN-LAST:event_btnAddtble6ActionPerformed
+
+    private void btnAddtble7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble7ActionPerformed
+        // TODO add your handling code here:
+        if(menuPage == null){
+            menuPage = new fmTableMenu(this);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+    }//GEN-LAST:event_btnAddtble7ActionPerformed
+
+    private void btnAddtble8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble8ActionPerformed
+        // TODO add your handling code here:
+        if(menuPage == null){
+            menuPage = new fmTableMenu(this);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+    }//GEN-LAST:event_btnAddtble8ActionPerformed
+
+    private void btnAddtble4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble4ActionPerformed
+        // TODO add your handling code here:
+        if(menuPage == null){
+            menuPage = new fmTableMenu(this);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+    }//GEN-LAST:event_btnAddtble4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -600,22 +712,23 @@ public class fmTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton Back;
+    private javax.swing.JButton btnAddtble1;
+    private javax.swing.JButton btnAddtble2;
+    private javax.swing.JButton btnAddtble3;
+    private javax.swing.JButton btnAddtble4;
+    private javax.swing.JButton btnAddtble5;
+    private javax.swing.JButton btnAddtble6;
+    private javax.swing.JButton btnAddtble7;
+    private javax.swing.JButton btnAddtble8;
     private javax.swing.JButton btnBill;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
