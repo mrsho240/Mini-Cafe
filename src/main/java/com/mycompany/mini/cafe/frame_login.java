@@ -8,18 +8,14 @@ import javax.swing.Icon;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import java.io.InputStream;
+import java.util.Properties;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class frame_login extends javax.swing.JFrame {
-
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_login.class.getName());
-    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/mini_cafe";
-    private static final String USER = "root";
-    private static final String PASSWORD = "12345678";
-
     public frame_login() {
         // Initialize initComponents 
         initComponents();
@@ -40,31 +36,7 @@ public class frame_login extends javax.swing.JFrame {
         LgnIMG.setIcon(new ImageIcon(imageMem));
         logoIMG.setIcon(new ImageIcon(logoMem));
         r_lgnBG.setIcon(new ImageIcon(rlgn_mem));
-        // ========================= Connection Database System ========================
-        Connection connection = null;
-        try {
-            System.out.println("Loading ");
-            Class.forName(JDBC_DRIVER);
-            System.out.println("Connecting");
-            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-            System.out.println("Connected to database");
-        } catch (ClassNotFoundException e) {
-            System.err.println("HEE ma");
-            e.printStackTrace();
-        } catch (SQLException e) {
-            System.err.println("Database connection error!");
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                    System.out.println("Connection closed.");
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        // ========================= Connection Database System ========================
+
     }
 
     @SuppressWarnings("unchecked")
@@ -145,9 +117,29 @@ public class frame_login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        frame_selection frame_selection = new frame_selection();
-        frame_selection.show();
+
+        String username = username_field.getText();
+        String password = new String(password_field.getPassword());
+
+        String role = AuthService.login(username, password);
+
+        if (role == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Invalid username or password",
+                    "Login Failed",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this, "Login successful! " + role);
+
+        // ไปหน้าเลือกเมนู
+        frame_selection fs = new frame_selection();
+        fs.setVisible(true);
         this.dispose();
+//        frame_selection frame_selection = new frame_selection();
+//        frame_selection.show();
+//        this.dispose();
     }//GEN-LAST:event_btnLoginActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new frame_login().setVisible(true));
