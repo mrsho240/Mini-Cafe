@@ -12,8 +12,6 @@ public class fmMenu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(fmTable.class.getName());
     private String userRole;
-    private jfEdit editpage = null;
-    private jfAddMenu addMeun = null;
     /**
      * Creates new form fmTable
      */
@@ -198,14 +196,10 @@ public class fmMenu extends javax.swing.JFrame {
 
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         // TODO add your handling code here:
-        jfEdit addDialog = new jfEdit(this, true);
-        addDialog.setVisible(true);
     }//GEN-LAST:event_btneditActionPerformed
 
     private void btnAddMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMenuActionPerformed
         // TODO add your handling code here:
-        jfAddMenu addDialog = new jfAddMenu(this, true);
-        addDialog.setVisible(true);
     }//GEN-LAST:event_btnAddMenuActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
