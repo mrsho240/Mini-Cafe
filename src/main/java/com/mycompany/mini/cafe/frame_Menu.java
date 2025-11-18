@@ -8,17 +8,17 @@ package com.mycompany.mini.cafe;
  *
  * @author User
  */
-public class fmMenu extends javax.swing.JFrame {
+public class frame_Menu extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(fmTable.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_Table.class.getName());
     private frame_selection mainMenu;
     /**
-     * Creates new form fmTable
+     * Creates new form frame_Table
      */
-    public fmMenu() {
+    public frame_Menu() {
         initComponents();
     }
-    public fmMenu(frame_selection mainMenu) {
+    public frame_Menu(frame_selection mainMenu) {
         initComponents();
         this.mainMenu = mainMenu;
     }
@@ -244,7 +244,7 @@ public class fmMenu extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new fmTable().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frame_Table().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

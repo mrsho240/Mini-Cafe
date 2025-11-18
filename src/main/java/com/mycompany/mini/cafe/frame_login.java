@@ -117,12 +117,9 @@ public class frame_login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
         String username = username_field.getText();
         String password = new String(password_field.getPassword());
-
         String role = AuthService.login(username, password);
-
         if (role == null) {
             JOptionPane.showMessageDialog(this,
                     "Invalid username or password",
@@ -130,16 +127,11 @@ public class frame_login extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
         JOptionPane.showMessageDialog(this, "Login successful! " + role);
-
-        // ไปหน้าเลือกเมนู
         frame_selection fs = new frame_selection();
         fs.setVisible(true);
         this.dispose();
-//        frame_selection frame_selection = new frame_selection();
-//        frame_selection.show();
-//        this.dispose();
+
     }//GEN-LAST:event_btnLoginActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new frame_login().setVisible(true));

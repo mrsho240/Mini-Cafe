@@ -11,8 +11,8 @@ package com.mycompany.mini.cafe;
 public class frame_selection extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_selection.class.getName());
-    private fmTable tablePage = null; /** collect table page */
-    private fmMenu menuPage = null; /** collect menu page */
+    private frame_Table tablePage = null; /** collect table page */
+    private frame_Menu menuPage = null; /** collect menu page */
 
     public frame_selection() {
         initComponents();
@@ -30,7 +30,7 @@ public class frame_selection extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         panel_Header = new com.mycompany.UI.CustomHeaderPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lable_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(216, 181, 151));
@@ -75,21 +75,22 @@ public class frame_selection extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Welome Back");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel3.setText("Custom");
+        lable_status.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lable_status.setText("Custom");
 
         javax.swing.GroupLayout panel_HeaderLayout = new javax.swing.GroupLayout(panel_Header);
         panel_Header.setLayout(panel_HeaderLayout);
         panel_HeaderLayout.setHorizontalGroup(
             panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_HeaderLayout.createSequentialGroup()
-                .addGap(402, 402, 402)
-                .addComponent(jLabel2)
-                .addContainerGap(384, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_HeaderLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(415, 415, 415))
+                .addGroup(panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_HeaderLayout.createSequentialGroup()
+                        .addGap(382, 382, 382)
+                        .addComponent(lable_status))
+                    .addGroup(panel_HeaderLayout.createSequentialGroup()
+                        .addGap(355, 355, 355)
+                        .addComponent(jLabel2)))
+                .addContainerGap(402, Short.MAX_VALUE))
         );
         panel_HeaderLayout.setVerticalGroup(
             panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,7 +98,7 @@ public class frame_selection extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(lable_status)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -106,9 +107,9 @@ public class frame_selection extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(panel_Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(14, 14, 14))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,7 +125,7 @@ public class frame_selection extends javax.swing.JFrame {
 
     private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
         if(tablePage == null){
-            tablePage = new fmTable(this); 
+            tablePage = new frame_Table(this); 
         }
         this.setVisible(false);
         tablePage.setVisible(true);
@@ -133,7 +134,7 @@ public class frame_selection extends javax.swing.JFrame {
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmMenu(this); 
+            menuPage = new frame_Menu(this); 
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -170,9 +171,9 @@ public class frame_selection extends javax.swing.JFrame {
     private com.mycompany.UI.CustomCardButton btnTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lable_status;
     private com.mycompany.UI.CustomHeaderPanel panel_Header;
     // End of variables declaration//GEN-END:variables
 }

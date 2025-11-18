@@ -8,18 +8,18 @@ package com.mycompany.mini.cafe;
  *
  * @author User
  */
-public class fmTable extends javax.swing.JFrame {
+public class frame_Table extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(fmTable.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_Table.class.getName());
     private frame_selection mainMenu;
-    private fmTableMenu menuPage = null;
+    private frame_AddMenuToTable menuPage = null;
     /**
      * Creates new form fmTable
      */
-    public fmTable() {
+    public frame_Table() {
         initComponents();
     }
-    public fmTable(frame_selection mainMenu) {
+    public frame_Table(frame_selection mainMenu) {
         initComponents();
         this.mainMenu = mainMenu;
 
@@ -611,7 +611,7 @@ public class fmTable extends javax.swing.JFrame {
     private void btnAddtble1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble1ActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmTableMenu(this);
+            menuPage = new frame_AddMenuToTable(this);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -626,7 +626,7 @@ public class fmTable extends javax.swing.JFrame {
     private void btnAddtble2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble2ActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmTableMenu(this);
+            menuPage = new frame_AddMenuToTable(this);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -635,7 +635,7 @@ public class fmTable extends javax.swing.JFrame {
     private void btnAddtble3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble3ActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmTableMenu(this);
+            menuPage = new frame_AddMenuToTable(this);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -644,7 +644,7 @@ public class fmTable extends javax.swing.JFrame {
     private void btnAddtble5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble5ActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmTableMenu(this);
+            menuPage = new frame_AddMenuToTable(this);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -653,7 +653,7 @@ public class fmTable extends javax.swing.JFrame {
     private void btnAddtble6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble6ActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmTableMenu(this);
+            menuPage = new frame_AddMenuToTable(this);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -662,7 +662,7 @@ public class fmTable extends javax.swing.JFrame {
     private void btnAddtble7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble7ActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmTableMenu(this);
+            menuPage = new frame_AddMenuToTable(this);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -671,7 +671,7 @@ public class fmTable extends javax.swing.JFrame {
     private void btnAddtble8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble8ActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmTableMenu(this);
+            menuPage = new frame_AddMenuToTable(this);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -680,7 +680,7 @@ public class fmTable extends javax.swing.JFrame {
     private void btnAddtble4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble4ActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new fmTableMenu(this);
+            menuPage = new frame_AddMenuToTable(this);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
@@ -708,7 +708,7 @@ public class fmTable extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new fmTable().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new frame_Table().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
