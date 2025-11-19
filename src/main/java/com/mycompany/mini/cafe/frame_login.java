@@ -15,23 +15,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class frame_login extends javax.swing.JFrame {
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_login.class.getName());
+
     public frame_login() {
         // Initialize initComponents 
         initComponents();
         setTitle("Mini-Cafe");
-        // Initialize Image 
-//        Icon bgLogo = LgnIMG.getIcon();
-//        Icon rlgn_image1 = r_lgnBG.getIcon();
-//
-//        ImageIcon logoBG = (ImageIcon) bgLogo;
-//        ImageIcon rlgn_imageicon = (ImageIcon) rlgn_image1;
-//
-//        Image imageMem = logoBG.getImage().getScaledInstance(LgnIMG.getWidth(), LgnIMG.getHeight(), Image.SCALE_SMOOTH);
-//        Image rlgn_mem = rlgn_imageicon.getImage().getScaledInstance(r_lgnBG.getWidth(), r_lgnBG.getHeight(), Image.SCALE_SMOOTH);
-//
-//        LgnIMG.setIcon(new ImageIcon(imageMem));
-//        r_lgnBG.setIcon(new ImageIcon(rlgn_mem));
 
     }
 
@@ -117,6 +107,10 @@ public class frame_login extends javax.swing.JFrame {
                     "Invalid username or password",
                     "Login Failed",
                     JOptionPane.ERROR_MESSAGE);
+            username_field.requestFocusInWindow();
+            username_field.setText("");
+            password_field.setText("");
+
             return;
         }
         JOptionPane.showMessageDialog(this, "Login successful! " + role);

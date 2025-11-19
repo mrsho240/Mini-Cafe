@@ -19,6 +19,9 @@ public class frame_selection extends javax.swing.JFrame {
     public frame_selection(String role) {
         initComponents();
         label_status.setText(role);
+        if ("cashier".equals(role)){
+            btnAddM.setVisible(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -44,7 +47,7 @@ public class frame_selection extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAddM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add_round_fill.png.png"))); // NOI18N
-        btnAddM.setText("Add Member");
+        btnAddM.setText("Edit Menu");
         btnAddM.setToolTipText("");
         jPanel1.add(btnAddM, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 140, 130));
 
