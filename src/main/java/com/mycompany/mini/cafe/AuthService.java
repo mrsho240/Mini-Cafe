@@ -9,7 +9,7 @@ public class AuthService {
     public static String login(String username, String password) {
         try (Connection conn = DBConnection.getConnection()) {
 
-            String sql = "SELECT role FROM member WHERE username = ? AND password = ?";
+            String sql = "SELECT * FROM member WHERE username = ? AND password = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, username);

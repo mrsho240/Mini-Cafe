@@ -21,21 +21,17 @@ public class frame_login extends javax.swing.JFrame {
         initComponents();
         setTitle("Mini-Cafe");
         // Initialize Image 
-        Icon bgLogo = LgnIMG.getIcon();
-        Icon logo = logoIMG.getIcon();
-        Icon rlgn_image1 = r_lgnBG.getIcon();
-
-        ImageIcon logoBG = (ImageIcon) bgLogo;
-        ImageIcon Cafe = (ImageIcon) logo;
-        ImageIcon rlgn_imageicon = (ImageIcon) rlgn_image1;
-
-        Image imageMem = logoBG.getImage().getScaledInstance(LgnIMG.getWidth(), LgnIMG.getHeight(), Image.SCALE_SMOOTH);
-        Image rlgn_mem = rlgn_imageicon.getImage().getScaledInstance(r_lgnBG.getWidth(), r_lgnBG.getHeight(), Image.SCALE_SMOOTH);
-        Image logoMem = Cafe.getImage().getScaledInstance(logoIMG.getWidth(), logoIMG.getHeight(), Image.SCALE_SMOOTH);
-
-        LgnIMG.setIcon(new ImageIcon(imageMem));
-        logoIMG.setIcon(new ImageIcon(logoMem));
-        r_lgnBG.setIcon(new ImageIcon(rlgn_mem));
+//        Icon bgLogo = LgnIMG.getIcon();
+//        Icon rlgn_image1 = r_lgnBG.getIcon();
+//
+//        ImageIcon logoBG = (ImageIcon) bgLogo;
+//        ImageIcon rlgn_imageicon = (ImageIcon) rlgn_image1;
+//
+//        Image imageMem = logoBG.getImage().getScaledInstance(LgnIMG.getWidth(), LgnIMG.getHeight(), Image.SCALE_SMOOTH);
+//        Image rlgn_mem = rlgn_imageicon.getImage().getScaledInstance(r_lgnBG.getWidth(), r_lgnBG.getHeight(), Image.SCALE_SMOOTH);
+//
+//        LgnIMG.setIcon(new ImageIcon(imageMem));
+//        r_lgnBG.setIcon(new ImageIcon(rlgn_mem));
 
     }
 
@@ -53,7 +49,6 @@ public class frame_login extends javax.swing.JFrame {
         password_field = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
         r_lgnBG = new javax.swing.JLabel();
-        logoIMG = new javax.swing.JLabel();
         LgnIMG = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -91,13 +86,10 @@ public class frame_login extends javax.swing.JFrame {
         });
         jPanel2.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, 110, 50));
 
-        r_lgnBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg-image.png"))); // NOI18N
+        r_lgnBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg-image.jpg"))); // NOI18N
         jPanel2.add(r_lgnBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 450, 774));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, -10, 450, 760));
-
-        logoIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
-        jPanel1.add(logoIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 290, 290));
 
         LgnIMG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loginIMG.jpg"))); // NOI18N
         jPanel1.add(LgnIMG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 750));
@@ -128,7 +120,7 @@ public class frame_login extends javax.swing.JFrame {
             return;
         }
         JOptionPane.showMessageDialog(this, "Login successful! " + role);
-        frame_selection fs = new frame_selection();
+        frame_selection fs = new frame_selection(role);
         fs.setVisible(true);
         this.dispose();
 
@@ -146,7 +138,6 @@ public class frame_login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel logoIMG;
     private javax.swing.JPasswordField password_field;
     private javax.swing.JLabel r_lgnBG;
     private javax.swing.JTextField username_field;

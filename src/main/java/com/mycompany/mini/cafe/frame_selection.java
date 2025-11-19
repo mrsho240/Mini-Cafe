@@ -13,9 +13,12 @@ public class frame_selection extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_selection.class.getName());
     private frame_Table tablePage = null; /** collect table page */
     private frame_Menu menuPage = null; /** collect menu page */
-
     public frame_selection() {
         initComponents();
+    }
+    public frame_selection(String role) {
+        initComponents();
+        label_status.setText(role);
     }
 
     @SuppressWarnings("unchecked")
@@ -30,7 +33,7 @@ public class frame_selection extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         panel_Header = new com.mycompany.UI.CustomHeaderPanel();
         jLabel2 = new javax.swing.JLabel();
-        lable_status = new javax.swing.JLabel();
+        label_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(216, 181, 151));
@@ -75,8 +78,8 @@ public class frame_selection extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Welome Back");
 
-        lable_status.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lable_status.setText("Custom");
+        label_status.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        label_status.setText("Custom");
 
         javax.swing.GroupLayout panel_HeaderLayout = new javax.swing.GroupLayout(panel_Header);
         panel_Header.setLayout(panel_HeaderLayout);
@@ -86,7 +89,7 @@ public class frame_selection extends javax.swing.JFrame {
                 .addGroup(panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_HeaderLayout.createSequentialGroup()
                         .addGap(382, 382, 382)
-                        .addComponent(lable_status))
+                        .addComponent(label_status))
                     .addGroup(panel_HeaderLayout.createSequentialGroup()
                         .addGap(355, 355, 355)
                         .addComponent(jLabel2)))
@@ -98,7 +101,7 @@ public class frame_selection extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lable_status)
+                .addComponent(label_status)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -173,7 +176,7 @@ public class frame_selection extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lable_status;
+    private javax.swing.JLabel label_status;
     private com.mycompany.UI.CustomHeaderPanel panel_Header;
     // End of variables declaration//GEN-END:variables
 }
