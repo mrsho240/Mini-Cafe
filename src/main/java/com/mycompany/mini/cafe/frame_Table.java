@@ -4,6 +4,9 @@
  */
 package com.mycompany.mini.cafe;
 
+import java.util.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author User
@@ -13,6 +16,9 @@ public class frame_Table extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_Table.class.getName());
     private frame_selection mainMenu;
     private frame_AddMenuToTable menuPage = null;
+    private List<Table> tableList = new ArrayList<>();
+    private List<javax.swing.JLabel> Pricelist = new ArrayList<>();
+    private List<javax.swing.JLabel> StateList = new ArrayList<>();
     /**
      * Creates new form fmTable
      */
@@ -22,7 +28,9 @@ public class frame_Table extends javax.swing.JFrame {
     public frame_Table(frame_selection mainMenu) {
         initComponents();
         this.mainMenu = mainMenu;
-
+        BuiltTable();
+        Pricelist = Arrays.asList(labPrice1, labPrice2, labPrice3, labPrice4,labPrice5, labPrice6, labPrice7, labPrice8);
+        StateList = Arrays.asList(labState1, labState2, labState3, labState4,labState5, labState6, labState7, labState8);
     }
 
     /**
@@ -38,53 +46,61 @@ public class frame_Table extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        labState = new javax.swing.JLabel();
+        labState1 = new javax.swing.JLabel();
         labTable = new javax.swing.JLabel();
-        labPrice = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         btnAddtble1 = new javax.swing.JButton();
-        btnBill = new javax.swing.JButton();
+        btnBill1 = new javax.swing.JButton();
+        labPrice1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        labState2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnAddtble2 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBill2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
+        labPrice2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        labState3 = new javax.swing.JLabel();
         btnAddtble3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnBill3 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        labPrice3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        labState4 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         btnAddtble4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnBill4 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        labPrice4 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        labState5 = new javax.swing.JLabel();
         btnAddtble5 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnBill5 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        labPrice5 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        labState6 = new javax.swing.JLabel();
         btnAddtble6 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        btnBill6 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        labPrice6 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        labState7 = new javax.swing.JLabel();
         btnAddtble7 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btnBill7 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        labPrice7 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        labState8 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         btnAddtble8 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        btnBill8 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
+        labPrice8 = new javax.swing.JLabel();
         Back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,11 +130,11 @@ public class frame_Table extends javax.swing.JFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        labState.setText("Empty");
+        labState1.setText("Empty");
 
-        labTable.setText("Table :");
+        labTable.setText("Table : 1");
 
-        labPrice.setText("Price :");
+        jLabel29.setText("Price :");
 
         btnAddtble1.setText("Add");
         btnAddtble1.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +143,14 @@ public class frame_Table extends javax.swing.JFrame {
             }
         });
 
-        btnBill.setText("Check Bill");
+        btnBill1.setText("Check Bill");
+        btnBill1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill1ActionPerformed(evt);
+            }
+        });
+
+        labPrice1.setText("0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -137,41 +160,46 @@ public class frame_Table extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labTable)
-                    .addComponent(labPrice))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labPrice1)))
+                .addContainerGap(141, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnAddtble1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBill)
+                        .addComponent(btnBill1)
                         .addGap(6, 6, 6))
-                    .addComponent(labState))
+                    .addComponent(labState1))
                 .addGap(14, 14, 14))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labState)
+                .addComponent(labState1)
                 .addGap(46, 46, 46)
                 .addComponent(labTable)
                 .addGap(18, 18, 18)
-                .addComponent(labPrice)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(labPrice1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddtble1)
-                    .addComponent(btnBill))
+                    .addComponent(btnBill1))
                 .addGap(26, 26, 26))
         );
 
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel4.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jLabel2.setText("Empty");
+        labState2.setText("Empty");
 
-        jLabel9.setText("Table :");
+        jLabel9.setText("Table : 2");
 
         btnAddtble2.setText("Add");
         btnAddtble2.addActionListener(new java.awt.event.ActionListener() {
@@ -180,9 +208,16 @@ public class frame_Table extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Check Bill");
+        btnBill2.setText("Check Bill");
+        btnBill2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill2ActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Price :");
+
+        labPrice2.setText("0");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -192,15 +227,18 @@ public class frame_Table extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2))
+                        .addComponent(labState2))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labPrice2))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(btnAddtble2)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2))
+                                .addComponent(btnBill2))
                             .addComponent(jLabel9))
                         .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -209,21 +247,23 @@ public class frame_Table extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(labState2)
                 .addGap(44, 44, 44)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel10)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(labPrice2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddtble2)
-                    .addComponent(jButton2))
+                    .addComponent(btnBill2))
                 .addGap(26, 26, 26))
         );
 
         jPanel5.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jLabel3.setText("Empty");
+        labState3.setText("Empty");
 
         btnAddtble3.setText("Add");
         btnAddtble3.addActionListener(new java.awt.event.ActionListener() {
@@ -232,11 +272,18 @@ public class frame_Table extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Check Bill");
+        btnBill3.setText("Check Bill");
+        btnBill3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill3ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Price :");
 
-        jLabel12.setText("Table :");
+        jLabel12.setText("Table : 3");
+
+        labPrice3.setText("0");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -244,40 +291,45 @@ public class frame_Table extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(labState3)
                 .addContainerGap())
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel11)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labPrice3))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(btnAddtble3)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
+                        .addComponent(btnBill3)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(labState3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel11)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(labPrice3))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddtble3)
-                    .addComponent(jButton4))
+                    .addComponent(btnBill3))
                 .addGap(24, 24, 24))
         );
 
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jLabel4.setText("Empty");
+        labState4.setText("Empty");
 
-        jLabel13.setText("Table :");
+        jLabel13.setText("Table : 4");
 
         btnAddtble4.setText("Add");
         btnAddtble4.addActionListener(new java.awt.event.ActionListener() {
@@ -286,9 +338,16 @@ public class frame_Table extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Check Bill");
+        btnBill4.setText("Check Bill");
+        btnBill4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill4ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Price :");
+
+        labPrice4.setText("0");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -298,15 +357,18 @@ public class frame_Table extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
+                        .addComponent(labState4))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labPrice4))
                             .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addComponent(btnAddtble4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton6))
+                                .addComponent(btnBill4))
                             .addComponent(jLabel13))
                         .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -315,21 +377,23 @@ public class frame_Table extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(labState4)
                 .addGap(44, 44, 44)
                 .addComponent(jLabel13)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel14)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(labPrice4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddtble4)
-                    .addComponent(jButton6))
+                    .addComponent(btnBill4))
                 .addGap(22, 22, 22))
         );
 
         jPanel7.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jLabel5.setText("Empty");
+        labState5.setText("Empty");
 
         btnAddtble5.setText("Add");
         btnAddtble5.addActionListener(new java.awt.event.ActionListener() {
@@ -338,11 +402,18 @@ public class frame_Table extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("Check Bill");
+        btnBill5.setText("Check Bill");
+        btnBill5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill5ActionPerformed(evt);
+            }
+        });
 
-        jLabel15.setText("Table :");
+        jLabel15.setText("Table : 5");
 
         jLabel16.setText("Price :");
+
+        labPrice5.setText("0");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -350,38 +421,43 @@ public class frame_Table extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
+                .addComponent(labState5)
                 .addContainerGap())
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labPrice5))
                     .addComponent(jLabel15)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(btnAddtble5)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton8)))
+                        .addComponent(btnBill5)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
+                .addComponent(labState5)
                 .addGap(52, 52, 52)
                 .addComponent(jLabel15)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel16)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(labPrice5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddtble5)
-                    .addComponent(jButton8))
+                    .addComponent(btnBill5))
                 .addGap(21, 21, 21))
         );
 
         jPanel8.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jLabel6.setText("Empty");
+        labState6.setText("Empty");
 
         btnAddtble6.setText("Add");
         btnAddtble6.addActionListener(new java.awt.event.ActionListener() {
@@ -390,11 +466,18 @@ public class frame_Table extends javax.swing.JFrame {
             }
         });
 
-        jButton10.setText("Check Bill");
+        btnBill6.setText("Check Bill");
+        btnBill6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill6ActionPerformed(evt);
+            }
+        });
 
-        jLabel17.setText("Table :");
+        jLabel17.setText("Table : 6");
 
         jLabel18.setText("Price :");
+
+        labPrice6.setText("0");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -402,38 +485,43 @@ public class frame_Table extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6)
+                .addComponent(labState6)
                 .addContainerGap())
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labPrice6))
                     .addComponent(jLabel17)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(btnAddtble6)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton10)))
+                        .addComponent(btnBill6)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addComponent(labState6)
                 .addGap(49, 49, 49)
                 .addComponent(jLabel17)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(labPrice6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddtble6)
-                    .addComponent(jButton10))
+                    .addComponent(btnBill6))
                 .addGap(21, 21, 21))
         );
 
         jPanel9.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jLabel7.setText("Empty");
+        labState7.setText("Empty");
 
         btnAddtble7.setText("Add");
         btnAddtble7.addActionListener(new java.awt.event.ActionListener() {
@@ -442,11 +530,18 @@ public class frame_Table extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setText("Check Bill");
+        btnBill7.setText("Check Bill");
+        btnBill7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill7ActionPerformed(evt);
+            }
+        });
 
-        jLabel19.setText("Table :");
+        jLabel19.setText("Table : 7");
 
         jLabel20.setText("Price :");
+
+        labPrice7.setText("0");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -454,40 +549,45 @@ public class frame_Table extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addComponent(labState7)
                 .addContainerGap())
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labPrice7))
                     .addComponent(jLabel19)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(btnAddtble7)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton12)))
+                        .addComponent(btnBill7)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addComponent(labState7)
                 .addGap(46, 46, 46)
                 .addComponent(jLabel19)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel20)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(labPrice7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddtble7)
-                    .addComponent(jButton12))
+                    .addComponent(btnBill7))
                 .addGap(20, 20, 20))
         );
 
         jPanel10.setPreferredSize(new java.awt.Dimension(200, 200));
 
-        jLabel8.setText("Empty");
+        labState8.setText("Empty");
 
-        jLabel21.setText("Table :");
+        jLabel21.setText("Table : 8");
 
         btnAddtble8.setText("Add");
         btnAddtble8.addActionListener(new java.awt.event.ActionListener() {
@@ -496,9 +596,16 @@ public class frame_Table extends javax.swing.JFrame {
             }
         });
 
-        jButton14.setText("Check Bill");
+        btnBill8.setText("Check Bill");
+        btnBill8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBill8ActionPerformed(evt);
+            }
+        });
 
         jLabel22.setText("Price :");
+
+        labPrice8.setText("0");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -508,16 +615,19 @@ public class frame_Table extends javax.swing.JFrame {
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8))
+                        .addComponent(labState8))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
-                            .addComponent(jLabel22)
+                            .addGroup(jPanel10Layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labPrice8))
                             .addGroup(jPanel10Layout.createSequentialGroup()
                                 .addComponent(btnAddtble8)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton14)))
+                                .addComponent(btnBill8)))
                         .addGap(0, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -525,15 +635,17 @@ public class frame_Table extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8)
+                .addComponent(labState8)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel21)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel22)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(labPrice8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddtble8)
-                    .addComponent(jButton14))
+                    .addComponent(btnBill8))
                 .addGap(22, 22, 22))
         );
 
@@ -610,11 +722,17 @@ public class frame_Table extends javax.swing.JFrame {
 
     private void btnAddtble1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble1ActionPerformed
         // TODO add your handling code here:
+        Table TableNo = tableList.get(0);
         if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this);
+            menuPage = new frame_AddMenuToTable(this,TableNo);
+        }else{
+            menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
+        if(menuPage != null){
+            menuPage.UpdateUI(TableNo);
+        }
     }//GEN-LAST:event_btnAddtble1ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -625,66 +743,188 @@ public class frame_Table extends javax.swing.JFrame {
 
     private void btnAddtble2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble2ActionPerformed
         // TODO add your handling code here:
+        Table TableNo = tableList.get(1);
         if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this);
+            menuPage = new frame_AddMenuToTable(this,TableNo);
+        }else{
+            menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
+        if(menuPage != null){
+            menuPage.UpdateUI(TableNo);
+        }
     }//GEN-LAST:event_btnAddtble2ActionPerformed
 
     private void btnAddtble3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble3ActionPerformed
         // TODO add your handling code here:
+        Table TableNo = tableList.get(2);
         if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this);
+            menuPage = new frame_AddMenuToTable(this,TableNo);
+        }else{
+            menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
+        if(menuPage != null){
+            menuPage.UpdateUI(TableNo);
+        }
     }//GEN-LAST:event_btnAddtble3ActionPerformed
 
     private void btnAddtble5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble5ActionPerformed
         // TODO add your handling code here:
+        Table TableNo = tableList.get(4);
         if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this);
+            menuPage = new frame_AddMenuToTable(this,TableNo);
+        }else{
+            menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
+        if(menuPage != null){
+            menuPage.UpdateUI(TableNo);
+        }
     }//GEN-LAST:event_btnAddtble5ActionPerformed
 
     private void btnAddtble6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble6ActionPerformed
         // TODO add your handling code here:
+        Table TableNo = tableList.get(5);
         if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this);
+            menuPage = new frame_AddMenuToTable(this,TableNo);
+        }else{
+            menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
+        if(menuPage != null){
+            menuPage.UpdateUI(TableNo);
+        }
     }//GEN-LAST:event_btnAddtble6ActionPerformed
 
     private void btnAddtble7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble7ActionPerformed
         // TODO add your handling code here:
+        Table TableNo = tableList.get(6);
         if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this);
+            menuPage = new frame_AddMenuToTable(this,TableNo);
+        }else{
+            menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
+        if(menuPage != null){
+            menuPage.UpdateUI(TableNo);
+        }
     }//GEN-LAST:event_btnAddtble7ActionPerformed
 
     private void btnAddtble8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble8ActionPerformed
         // TODO add your handling code here:
+        Table TableNo = tableList.get(7);
         if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this);
+            menuPage = new frame_AddMenuToTable(this,TableNo);
+        }else{
+            menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
+        if(menuPage != null){
+            menuPage.UpdateUI(TableNo);
+        }
     }//GEN-LAST:event_btnAddtble8ActionPerformed
 
     private void btnAddtble4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble4ActionPerformed
         // TODO add your handling code here:
+        Table TableNo = tableList.get(3);
         if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this);
+            menuPage = new frame_AddMenuToTable(this,TableNo);
+        }else{
+            menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
+        if(menuPage != null){
+            menuPage.UpdateUI(TableNo);
+        }
     }//GEN-LAST:event_btnAddtble4ActionPerformed
+
+    private void btnBill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill1ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(0);
+        TableNo.setState(false);
+        TableNo.setFoods(new ArrayList<>());
+        labState1.setText(TableNo.getState());
+        labPrice1.setText(String.valueOf(TableNo.getTotalPrice()));
+        JOptionPane.showMessageDialog(null,"Payed");
+    }//GEN-LAST:event_btnBill1ActionPerformed
+
+    private void btnBill2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill2ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(1);
+        TableNo.setState(false);
+        TableNo.setFoods(new ArrayList<>());
+        labState2.setText(TableNo.getState());
+        labPrice2.setText(String.valueOf(TableNo.getTotalPrice()));
+        JOptionPane.showMessageDialog(null,"Payed");
+    }//GEN-LAST:event_btnBill2ActionPerformed
+
+    private void btnBill3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill3ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(2);
+        TableNo.setState(false);
+        TableNo.setFoods(new ArrayList<>());
+        labState3.setText(TableNo.getState());
+        labPrice3.setText(String.valueOf(TableNo.getTotalPrice()));
+        JOptionPane.showMessageDialog(null,"Payed");
+    }//GEN-LAST:event_btnBill3ActionPerformed
+
+    private void btnBill4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill4ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(3);
+        TableNo.setState(false);
+        TableNo.setFoods(new ArrayList<>());
+        labState4.setText(TableNo.getState());
+        labPrice4.setText(String.valueOf(TableNo.getTotalPrice()));
+        JOptionPane.showMessageDialog(null,"Payed");
+    }//GEN-LAST:event_btnBill4ActionPerformed
+
+    private void btnBill5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill5ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(4);
+        TableNo.setState(false);
+        TableNo.setFoods(new ArrayList<>());
+        labState5.setText(TableNo.getState());
+        labPrice5.setText(String.valueOf(TableNo.getTotalPrice()));
+        JOptionPane.showMessageDialog(null,"Payed");
+    }//GEN-LAST:event_btnBill5ActionPerformed
+
+    private void btnBill6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill6ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(5);
+        TableNo.setState(false);
+        TableNo.setFoods(new ArrayList<>());
+        labState6.setText(TableNo.getState());
+        labPrice6.setText(String.valueOf(TableNo.getTotalPrice()));
+        JOptionPane.showMessageDialog(null,"Payed");
+    }//GEN-LAST:event_btnBill6ActionPerformed
+
+    private void btnBill7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill7ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(6);
+        TableNo.setState(false);
+        TableNo.setFoods(new ArrayList<>());
+        labState7.setText(TableNo.getState());
+        labPrice7.setText(String.valueOf(TableNo.getTotalPrice()));
+        JOptionPane.showMessageDialog(null,"Payed");
+    }//GEN-LAST:event_btnBill7ActionPerformed
+
+    private void btnBill8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill8ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(7);
+        TableNo.setState(false);
+        TableNo.setFoods(new ArrayList<>());
+        labState8.setText(TableNo.getState());
+        labPrice8.setText(String.valueOf(TableNo.getTotalPrice()));
+        JOptionPane.showMessageDialog(null,"Payed");
+    }//GEN-LAST:event_btnBill8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -721,14 +961,14 @@ public class frame_Table extends javax.swing.JFrame {
     private javax.swing.JButton btnAddtble6;
     private javax.swing.JButton btnAddtble7;
     private javax.swing.JButton btnAddtble8;
-    private javax.swing.JButton btnBill;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton btnBill1;
+    private javax.swing.JButton btnBill2;
+    private javax.swing.JButton btnBill3;
+    private javax.swing.JButton btnBill4;
+    private javax.swing.JButton btnBill5;
+    private javax.swing.JButton btnBill6;
+    private javax.swing.JButton btnBill7;
+    private javax.swing.JButton btnBill8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -740,16 +980,10 @@ public class frame_Table extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -761,8 +995,39 @@ public class frame_Table extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JLabel labPrice;
-    private javax.swing.JLabel labState;
+    private javax.swing.JLabel labPrice1;
+    private javax.swing.JLabel labPrice2;
+    private javax.swing.JLabel labPrice3;
+    private javax.swing.JLabel labPrice4;
+    private javax.swing.JLabel labPrice5;
+    private javax.swing.JLabel labPrice6;
+    private javax.swing.JLabel labPrice7;
+    private javax.swing.JLabel labPrice8;
+    private javax.swing.JLabel labState1;
+    private javax.swing.JLabel labState2;
+    private javax.swing.JLabel labState3;
+    private javax.swing.JLabel labState4;
+    private javax.swing.JLabel labState5;
+    private javax.swing.JLabel labState6;
+    private javax.swing.JLabel labState7;
+    private javax.swing.JLabel labState8;
     private javax.swing.JLabel labTable;
     // End of variables declaration//GEN-END:variables
+
+    private void BuiltTable() {
+        for(int i=0; i<8; i++){
+            Table table = new Table();
+            tableList.add(table);
+        }
+    }
+
+    public void UpdateUI() {
+        for(int i=0; i<8; i++){
+            Table table = tableList.get(i);
+            javax.swing.JLabel lisprice = Pricelist.get(i);
+            javax.swing.JLabel lisstate = StateList.get(i);
+            lisstate.setText(table.getState());
+            lisprice.setText(String.valueOf(table.getTotalPrice()));
+        }
+    }
 }

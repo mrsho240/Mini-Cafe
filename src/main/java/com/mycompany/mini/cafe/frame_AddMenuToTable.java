@@ -8,19 +8,20 @@ import java.sql.ResultSet;
 public class frame_AddMenuToTable extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_AddMenuToTable.class.getName());
-    private frame_Table table;
-
+    private frame_Table tablepage;
+    private Table table;
     public frame_AddMenuToTable() {
         initComponents();
         loadTable();
     }
 
-    public frame_AddMenuToTable(frame_Table table) {
+    
+    public frame_AddMenuToTable(frame_Table tablepage, Table table) {
         initComponents();
+        this.tablepage = tablepage;
         this.table = table;
         loadTable();
     }
-
     private void loadTable() {
         try {
             // connect database
@@ -58,12 +59,14 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtSearchItem = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        labPrice = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,9 +95,19 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
 
         jLabel2.setText("Name or ID");
 
-        jButton1.setText("Add");
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Reset");
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,6 +129,10 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Price :");
+
+        labPrice.setText("0");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,17 +140,22 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSearchItem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnAdd)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnReset))
+                            .addComponent(jLabel2))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton2))
-                        .addComponent(jLabel2))
+                            .addComponent(jButton3)
+                            .addGap(90, 90, 90)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(90, 90, 90)))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labPrice)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
@@ -143,15 +165,19 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(labPrice))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSearchItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(btnAdd)
+                            .addComponent(btnReset))
                         .addGap(198, 198, 198)
                         .addComponent(jButton3))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -174,9 +200,39 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        tablepage.UpdateUI();
         this.setVisible(false);
-        table.setVisible(true);
+        tablepage.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        table.setState(true);
+        try{
+            Connection conn = DBConnection.getConnection();
+            String sql = "SELECT * FROM product WHERE id = ? OR name = ?";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setString(1, txtSearchItem.getText());
+            pst.setString(2, txtSearchItem.getText());
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()) {
+                Food f = new Food();
+                f.setName(rs.getString("name"));
+                f.setPrice(rs.getInt("price"));
+                f.setQuantity(1);
+                table.addFood(f);
+        }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        labPrice.setText(String.valueOf(table.getTotalPrice()));
+        txtSearchItem.setText("");
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        // TODO add your handling code here:
+        txtSearchItem.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,15 +260,25 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labPrice;
+    private javax.swing.JTextField txtSearchItem;
     // End of variables declaration//GEN-END:variables
+
+    void setTable(Table TableNo) {
+        this.table = TableNo;
+    }
+
+    void UpdateUI(Table TableNo) {
+        labPrice.setText(String.valueOf(TableNo.getTotalPrice()));
+    }
 }

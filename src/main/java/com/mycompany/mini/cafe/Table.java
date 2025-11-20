@@ -4,6 +4,8 @@
  */
 package com.mycompany.mini.cafe;
 
+import java.util.*;
+
 /**
  *
  * @author User
@@ -11,13 +13,18 @@ package com.mycompany.mini.cafe;
 public class Table {
     private boolean state;
     private int tableNo;
-    private int price;
+    private List<Food> foods;
 
-    /**
-     * @return the state
-     */
-    public boolean getState() {
-        return state;
+    
+    public Table() {
+        this.foods = new ArrayList<>();
+    }
+    
+    public String getState() {
+        if(state){
+            return "Full";
+        }
+        return "Empty";
     }
 
     /**
@@ -41,17 +48,19 @@ public class Table {
         this.tableNo = tableNo;
     }
 
-    /**
-     * @return the price
-     */
-    public int getPrice() {
-        return price;
+    public void addFood(Food f) {
+        this.foods.add(f);
     }
-
-    /**
-     * @param price the price to set
-     */
-    public void setPrice(int price) {
-        this.price = price;
+    
+    public void setFoods(List<Food> foods){
+        this.foods = foods;
+    }
+    
+    public int getTotalPrice() {
+        int total = 0;
+        for(Food f : foods) {
+            total += f.getPrice() * f.getQuantity();
+        }
+        return total;
     }
 }
