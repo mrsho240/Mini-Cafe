@@ -707,6 +707,7 @@ public class frame_Table extends javax.swing.JFrame {
         if(menuPage != null){
             menuPage.UpdateUI(TableNo);
         }
+        menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble1ActionPerformed
 
     private void btnAddtble2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble2ActionPerformed
@@ -722,6 +723,7 @@ public class frame_Table extends javax.swing.JFrame {
         if(menuPage != null){
             menuPage.UpdateUI(TableNo);
         }
+        menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble2ActionPerformed
 
     private void btnAddtble3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble3ActionPerformed
@@ -737,6 +739,7 @@ public class frame_Table extends javax.swing.JFrame {
         if(menuPage != null){
             menuPage.UpdateUI(TableNo);
         }
+        menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble3ActionPerformed
 
     private void btnAddtble5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble5ActionPerformed
@@ -752,6 +755,7 @@ public class frame_Table extends javax.swing.JFrame {
         if(menuPage != null){
             menuPage.UpdateUI(TableNo);
         }
+        menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble5ActionPerformed
 
     private void btnAddtble6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble6ActionPerformed
@@ -767,6 +771,7 @@ public class frame_Table extends javax.swing.JFrame {
         if(menuPage != null){
             menuPage.UpdateUI(TableNo);
         }
+        menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble6ActionPerformed
 
     private void btnAddtble7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble7ActionPerformed
@@ -782,6 +787,7 @@ public class frame_Table extends javax.swing.JFrame {
         if(menuPage != null){
             menuPage.UpdateUI(TableNo);
         }
+        menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble7ActionPerformed
 
     private void btnAddtble8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble8ActionPerformed
@@ -797,6 +803,7 @@ public class frame_Table extends javax.swing.JFrame {
         if(menuPage != null){
             menuPage.UpdateUI(TableNo);
         }
+        menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble8ActionPerformed
 
     private void btnAddtble4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble4ActionPerformed
@@ -812,6 +819,7 @@ public class frame_Table extends javax.swing.JFrame {
         if(menuPage != null){
             menuPage.UpdateUI(TableNo);
         }
+        menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble4ActionPerformed
 
     private void btnBill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill1ActionPerformed

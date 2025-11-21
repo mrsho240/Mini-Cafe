@@ -13,6 +13,7 @@ public class frame_selection extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_selection.class.getName());
     private frame_Table tablePage = null; /** collect table page */
     private frame_Menu menuPage = null; /** collect menu page */
+    private frame_Edit editPage = null; /** collect edit page */
     public frame_selection() {
         initComponents();
     }
@@ -20,7 +21,7 @@ public class frame_selection extends javax.swing.JFrame {
         initComponents();
         label_status.setText(role);
         if ("cashier".equals(role)){
-            btnAddM.setVisible(false);
+            btnEditPage.setVisible(false);
         }
     }
 
@@ -29,7 +30,7 @@ public class frame_selection extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnAddM = new com.mycompany.UI.CustomCardButton();
+        btnEditPage = new com.mycompany.UI.CustomCardButton();
         btnMenu = new com.mycompany.UI.CustomCardButton();
         btnTable = new com.mycompany.UI.CustomCardButton();
         jLabel1 = new javax.swing.JLabel();
@@ -46,10 +47,15 @@ public class frame_selection extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnAddM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add_round_fill.png.png"))); // NOI18N
-        btnAddM.setText("Edit Menu");
-        btnAddM.setToolTipText("");
-        jPanel1.add(btnAddM, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 140, 130));
+        btnEditPage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Add_round_fill.png.png"))); // NOI18N
+        btnEditPage.setText("Edit Menu");
+        btnEditPage.setToolTipText("");
+        btnEditPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditPageActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEditPage, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 140, 130));
 
         btnMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/alt_list.png"))); // NOI18N
         btnMenu.setText("Menu");
@@ -142,9 +148,19 @@ public class frame_selection extends javax.swing.JFrame {
         if(menuPage == null){
             menuPage = new frame_Menu(this); 
         }
+        menuPage.loadTable();
         this.setVisible(false);
         menuPage.setVisible(true);
     }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnEditPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPageActionPerformed
+        // TODO add your handling code here:
+        if(editPage == null){
+            editPage = new frame_Edit(this); 
+        }
+        this.setVisible(false);
+        editPage.setVisible(true);
+    }//GEN-LAST:event_btnEditPageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,7 +188,7 @@ public class frame_selection extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.UI.CustomCardButton btnAddM;
+    private com.mycompany.UI.CustomCardButton btnEditPage;
     private com.mycompany.UI.CustomCardButton btnMenu;
     private com.mycompany.UI.CustomCardButton btnTable;
     private javax.swing.JLabel jLabel1;

@@ -24,7 +24,7 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
         loadTable();
     }
 
-    private void loadTable() {
+    public void loadTable() {
         try {
             // connect database
             Connection conn = DBConnection.getConnection();
@@ -162,6 +162,9 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        /** Reset table state*/
+        table.setState(false);
+        
         try {
             // Restore stock back to database
             Connection conn = DBConnection.getConnection();
@@ -190,6 +193,7 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        /**Table is full*/
         table.setState(true);
 
         try {
