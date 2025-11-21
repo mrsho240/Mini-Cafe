@@ -14,7 +14,6 @@ public class Food {
     private String Name;
     private int Price;
     private int Quantity;
-    private ImageIcon Img;
 
     /**
      * @return the Name
@@ -57,19 +56,4 @@ public class Food {
     public void setQuantity(int Quantity) {
         this.Quantity = Quantity;
     }
-
-    /**
-     * @return the Img
-     */
-    public ImageIcon getImg() {
-        return Img;
-    }
-
-    /**
-     * @param Img the Img to set
-     */
-    public void setImg(ImageIcon Img) {
-        this.Img = Img;
-    }
-    
 }

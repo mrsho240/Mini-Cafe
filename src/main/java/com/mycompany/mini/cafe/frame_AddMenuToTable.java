@@ -50,7 +50,6 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -208,23 +207,46 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         table.setState(true);
-        try{
+        try {
+            /**Search Data*/
             Connection conn = DBConnection.getConnection();
-            String sql = "SELECT * FROM product WHERE id = ? OR name = ?";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setString(1, txtSearchItem.getText());
-            pst.setString(2, txtSearchItem.getText());
-            ResultSet rs = pst.executeQuery();
-            while(rs.next()) {
-                Food f = new Food();
-                f.setName(rs.getString("name"));
-                f.setPrice(rs.getInt("price"));
-                f.setQuantity(1);
-                table.addFood(f);
-        }
-        }catch(Exception e){
+            String searchInput = txtSearchItem.getText();
+            String selectSql = "SELECT id, name, price, quantity FROM product WHERE id = ? OR name = ?";
+            PreparedStatement selectPst = conn.prepareStatement(selectSql);
+            selectPst.setString(1, searchInput);
+            selectPst.setString(2, searchInput);
+            ResultSet rs = selectPst.executeQuery();
+            /**Get Value of Data*/
+            while (rs.next()) {
+                int Id = rs.getInt("id"); /**Get id*/
+                String Name = rs.getString("name"); /**Get name*/
+                int Price = rs.getInt("price"); /**Get price*/
+                int QStock = rs.getInt("quantity"); /**Get quantity*/
+                /**Get check if Out of stock*/
+                if (QStock > 0) {
+                    Food f = new Food();
+                    f.setName(Name);
+                    f.setPrice(Price); 
+                    f.setQuantity(1);  
+                    table.addFood(f);
+                    /**Update Quantity*/
+                    String updateSql = "UPDATE product SET quantity = quantity - 1 WHERE id = ?";
+                    PreparedStatement updatePst = conn.prepareStatement(updateSql);
+                    updatePst.setInt(1, Id);
+                    updatePst.executeUpdate();
+                    updatePst.close();
+                }else{
+                    javax.swing.JOptionPane.showMessageDialog(this, Name + " Sold Out", "Out of sale", javax.swing.JOptionPane.WARNING_MESSAGE);
+                }
+            }
+            rs.close();
+            selectPst.close();
+            conn.close();  
+        } catch (Exception e) {
             e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, "Not found", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
+        loadTable(); 
         labPrice.setText(String.valueOf(table.getTotalPrice()));
         txtSearchItem.setText("");
     }//GEN-LAST:event_btnAddActionPerformed
