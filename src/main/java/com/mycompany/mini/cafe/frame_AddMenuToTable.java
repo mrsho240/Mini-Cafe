@@ -4,24 +4,26 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 public class frame_AddMenuToTable extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_AddMenuToTable.class.getName());
     private frame_Table tablepage;
     private Table table;
+
     public frame_AddMenuToTable() {
         initComponents();
         loadTable();
     }
 
-    
     public frame_AddMenuToTable(frame_Table tablepage, Table table) {
         initComponents();
         this.tablepage = tablepage;
         this.table = table;
         loadTable();
     }
+
     private void loadTable() {
         try {
             // connect database
@@ -50,63 +52,50 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtSearchItem = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
+        panel_Header = new com.mycompany.UI.CustomHeaderPanel();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        btnReset = new com.mycompany.UI.RoundButton();
+        btnAdd = new com.mycompany.UI.RoundButton();
+        btnBack = new com.mycompany.UI.RoundButton();
         jLabel3 = new javax.swing.JLabel();
         labPrice = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(216, 181, 151));
+        jPanel1.setBackground(new java.awt.Color(246, 235, 218));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(249, 217, 170));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setText("Add Menu To Table");
 
-        jLabel1.setText("Menu");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(326, 326, 326)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        javax.swing.GroupLayout panel_HeaderLayout = new javax.swing.GroupLayout(panel_Header);
+        panel_Header.setLayout(panel_HeaderLayout);
+        panel_HeaderLayout.setHorizontalGroup(
+            panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_HeaderLayout.createSequentialGroup()
+                .addContainerGap(198, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(217, 217, 217))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(33, 33, 33))
+        panel_HeaderLayout.setVerticalGroup(
+            panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_HeaderLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel4)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jLabel2.setText("Name or ID");
-
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
-        btnReset.setText("Reset");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
-            }
-        });
+        jPanel1.add(panel_Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 640, 90));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,73 +110,48 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton3.setText("Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 540, 380));
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
+        jPanel1.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 510, 90, 40));
 
+        btnAdd.setText("Add to Table");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 510, -1, 40));
+
+        btnBack.setText("Back to Table");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, -1, 40));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Price :");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 520, -1, -1));
 
+        labPrice.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labPrice.setText("0");
+        jPanel1.add(labPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 520, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSearchItem, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAdd)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnReset))
-                            .addComponent(jLabel2))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButton3)
-                            .addGap(90, 90, 90)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labPrice)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(labPrice))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSearchItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd)
-                            .addComponent(btnReset))
-                        .addGap(198, 198, 198)
-                        .addComponent(jButton3))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg-Table.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,64 +161,106 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        try {
+            // Restore stock back to database
+            Connection conn = DBConnection.getConnection();
+
+            for (Food f : table.getFoods()) {
+                String updateSql = "UPDATE product SET quantity = quantity + ? WHERE name = ?";
+                PreparedStatement pst = conn.prepareStatement(updateSql);
+                pst.setInt(1, f.getQuantity());
+                pst.setString(2, f.getName());
+                pst.executeUpdate();
+                pst.close();
+            }
+
+            // Clear the cart
+            table.clearFoods();
+
+            // Reload table UI
+            loadTable();
+            labPrice.setText("0");
+
+            conn.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        table.setState(true);
+
+        try {
+            int selectedRow = jTable1.getSelectedRow();
+
+            if (selectedRow == -1) {
+                // "Please select a product from the table."
+                JOptionPane.showMessageDialog(this, "Please select a product from the table.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            /**
+             * Retrieve values directly from JTable
+             */
+            int Id = (int) jTable1.getValueAt(selectedRow, 0);
+            String Name = (String) jTable1.getValueAt(selectedRow, 1);
+
+            // Table usually stores price as Double
+            Object priceObj = jTable1.getValueAt(selectedRow, 2);
+            int Price = (priceObj instanceof Double) ? ((Double) priceObj).intValue() : (int) priceObj;
+
+            int QStock = (int) jTable1.getValueAt(selectedRow, 3);
+
+            /**
+             * Check stock
+             */
+            if (QStock <= 0) {
+                // Note: "Out of sale" implies the item is discontinued. "Out of Stock" is usually better for empty inventory.
+                JOptionPane.showMessageDialog(this, Name + " Sold Out", "Out of Stock", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            /**
+             * Add to cart
+             */
+            Food f = new Food();
+            f.setName(Name);
+            f.setPrice(Price);
+            f.setQuantity(1);
+            table.addFood(f);
+
+            /**
+             * Update stock in Database
+             */
+            Connection conn = DBConnection.getConnection();
+            String updateSql = "UPDATE product SET quantity = quantity - 1 WHERE id = ?";
+            PreparedStatement updatePst = conn.prepareStatement(updateSql);
+            updatePst.setInt(1, Id);
+            updatePst.executeUpdate();
+
+            updatePst.close();
+            conn.close();
+
+            /**
+             * Refresh UI
+             */
+            loadTable();
+            labPrice.setText(String.valueOf(table.getTotalPrice()));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // "An error occurred."
+            JOptionPane.showMessageDialog(this, "An error occurred.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         tablepage.UpdateUI();
         this.setVisible(false);
         tablepage.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        table.setState(true);
-        try {
-            /**Search Data*/
-            Connection conn = DBConnection.getConnection();
-            String searchInput = txtSearchItem.getText();
-            String selectSql = "SELECT id, name, price, quantity FROM product WHERE id = ? OR name = ?";
-            PreparedStatement selectPst = conn.prepareStatement(selectSql);
-            selectPst.setString(1, searchInput);
-            selectPst.setString(2, searchInput);
-            ResultSet rs = selectPst.executeQuery();
-            /**Get Value of Data*/
-            while (rs.next()) {
-                int Id = rs.getInt("id"); /**Get id*/
-                String Name = rs.getString("name"); /**Get name*/
-                int Price = rs.getInt("price"); /**Get price*/
-                int QStock = rs.getInt("quantity"); /**Get quantity*/
-                /**Get check if Out of stock*/
-                if (QStock > 0) {
-                    Food f = new Food();
-                    f.setName(Name);
-                    f.setPrice(Price); 
-                    f.setQuantity(1);  
-                    table.addFood(f);
-                    /**Update Quantity*/
-                    String updateSql = "UPDATE product SET quantity = quantity - 1 WHERE id = ?";
-                    PreparedStatement updatePst = conn.prepareStatement(updateSql);
-                    updatePst.setInt(1, Id);
-                    updatePst.executeUpdate();
-                    updatePst.close();
-                }else{
-                    javax.swing.JOptionPane.showMessageDialog(this, Name + " Sold Out", "Out of sale", javax.swing.JOptionPane.WARNING_MESSAGE);
-                }
-            }
-            rs.close();
-            selectPst.close();
-            conn.close();  
-        } catch (Exception e) {
-            e.printStackTrace();
-            javax.swing.JOptionPane.showMessageDialog(this, "Not found", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-        }
-        loadTable(); 
-        labPrice.setText(String.valueOf(table.getTotalPrice()));
-        txtSearchItem.setText("");
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        txtSearchItem.setText("");
-    }//GEN-LAST:event_btnResetActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,18 +288,17 @@ public class frame_AddMenuToTable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnReset;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private com.mycompany.UI.RoundButton btnAdd;
+    private com.mycompany.UI.RoundButton btnBack;
+    private com.mycompany.UI.RoundButton btnReset;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labPrice;
-    private javax.swing.JTextField txtSearchItem;
+    private com.mycompany.UI.CustomHeaderPanel panel_Header;
     // End of variables declaration//GEN-END:variables
 
     void setTable(Table TableNo) {

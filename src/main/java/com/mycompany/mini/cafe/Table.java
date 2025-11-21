@@ -11,20 +11,28 @@ import java.util.*;
  * @author User
  */
 public class Table {
+
     private boolean state;
     private int tableNo;
     private List<Food> foods;
 
-    
     public Table() {
         this.foods = new ArrayList<>();
     }
-    
+
+    public void clearFoods() {
+        foods.clear();
+    }
+
     public String getState() {
-        if(state){
+        if (state) {
             return "Full";
         }
         return "Empty";
+    }
+
+    public List<Food> getFoods() {
+        return foods;
     }
 
     /**
@@ -51,14 +59,14 @@ public class Table {
     public void addFood(Food f) {
         this.foods.add(f);
     }
-    
-    public void setFoods(List<Food> foods){
+
+    public void setFoods(List<Food> foods) {
         this.foods = foods;
     }
-    
+
     public int getTotalPrice() {
         int total = 0;
-        for(Food f : foods) {
+        for (Food f : foods) {
             total += f.getPrice() * f.getQuantity();
         }
         return total;

@@ -7,6 +7,7 @@ package com.mycompany.mini.cafe;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +19,7 @@ public class frame_Menu extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_Table.class.getName());
     private frame_selection mainMenu;
     private Client client;
+    private Table table;
 
     /**
      * Creates new form frame_Table
@@ -62,7 +64,7 @@ public class frame_Menu extends javax.swing.JFrame {
                     rs.getDouble("price"),
                     rs.getInt("quantity"),});
             }
-            jTable1.setModel(model);
+            jTable_Menu.setModel(model);
             conn.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,65 +74,28 @@ public class frame_Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         blackground = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        title = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        txtSearchItem = new javax.swing.JTextField();
-        btnAddMenu = new javax.swing.JButton();
-        btnedit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        Cart = new javax.swing.JTable();
+        jTable_Menu = new javax.swing.JTable();
+        btnAdd = new com.mycompany.UI.RoundButton();
+        btnReset = new com.mycompany.UI.RoundButton();
+        btnBill = new com.mycompany.UI.RoundButton();
+        btnBacktoMenu = new com.mycompany.UI.RoundButton();
+        panel_Header = new com.mycompany.UI.CustomHeaderPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        btnCheckBill = new javax.swing.JButton();
-        Back = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_Cart = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         labPrice = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        blackground.setBackground(new java.awt.Color(216, 181, 151));
+        blackground.setBackground(new java.awt.Color(246, 235, 218));
+        blackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(249, 217, 170));
-
-        title.setText("Menu");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(523, 523, 523)
-                .addComponent(title)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addComponent(title)
-                .addGap(40, 40, 40))
-        );
-
-        jLabel1.setText("Name or ID");
-
-        btnAddMenu.setText("Add");
-        btnAddMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddMenuActionPerformed(evt);
-            }
-        });
-
-        btnedit.setText("Reset");
-        btnedit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btneditActionPerformed(evt);
-            }
-        });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Menu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -141,198 +106,214 @@ public class frame_Menu extends javax.swing.JFrame {
                 "Test", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable_Menu);
 
-        Cart.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        blackground.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 320, 338));
 
-            },
-            new String [] {
-                "Name", "Quantity", "Price"
+        btnAdd.setText("Add to Cart");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(Cart);
+        });
+        blackground.add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 480, 110, 30));
 
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+        blackground.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 110, 30));
+
+        btnBill.setText("Chack Bill");
+        btnBill.setToolTipText("");
+        btnBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBillActionPerformed(evt);
+            }
+        });
+        blackground.add(btnBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 480, 110, 30));
+
+        btnBacktoMenu.setText("Back");
+        btnBacktoMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBacktoMenuActionPerformed(evt);
+            }
+        });
+        blackground.add(btnBacktoMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 110, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setText("Menu");
 
-        jLabel3.setText("Cart");
+        javax.swing.GroupLayout panel_HeaderLayout = new javax.swing.GroupLayout(panel_Header);
+        panel_Header.setLayout(panel_HeaderLayout);
+        panel_HeaderLayout.setHorizontalGroup(
+            panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_HeaderLayout.createSequentialGroup()
+                .addGap(317, 317, 317)
+                .addComponent(jLabel2)
+                .addContainerGap(347, Short.MAX_VALUE))
+        );
+        panel_HeaderLayout.setVerticalGroup(
+            panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_HeaderLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
 
-        btnCheckBill.setText("Chack Bill");
-        btnCheckBill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCheckBillActionPerformed(evt);
+        blackground.add(panel_Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 730, 80));
+
+        jTable_Cart.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        });
+        ));
+        jScrollPane3.setViewportView(jTable_Cart);
 
-        Back.setText("Back");
-        Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
-            }
-        });
+        blackground.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, 330, 340));
 
+        jPanel1.setBackground(new java.awt.Color(245, 206, 147));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Price :");
 
+        labPrice.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labPrice.setText("0");
 
-        javax.swing.GroupLayout blackgroundLayout = new javax.swing.GroupLayout(blackground);
-        blackground.setLayout(blackgroundLayout);
-        blackgroundLayout.setHorizontalGroup(
-            blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, blackgroundLayout.createSequentialGroup()
-                .addGroup(blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(blackgroundLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCheckBill))
-                    .addGroup(blackgroundLayout.createSequentialGroup()
-                        .addContainerGap(52, Short.MAX_VALUE)
-                        .addComponent(Back)
-                        .addGap(902, 902, 902)))
-                .addGap(24, 24, 24))
-            .addGroup(blackgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labPrice)
-                .addGap(346, 346, 346)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(213, 213, 213))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, blackgroundLayout.createSequentialGroup()
-                .addGroup(blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(blackgroundLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAddMenu)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnedit))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, blackgroundLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(txtSearchItem, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
-        );
-        blackgroundLayout.setVerticalGroup(
-            blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blackgroundLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jLabel4)
-                    .addComponent(labPrice))
-                .addGap(3, 3, 3)
-                .addGroup(blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(blackgroundLayout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel1)
-                        .addGap(12, 12, 12)
-                        .addComponent(txtSearchItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnedit)
-                            .addComponent(btnAddMenu)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(blackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCheckBill)
-                    .addComponent(Back))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(8, 8, 8)
+                    .addComponent(labPrice)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(labPrice))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        blackground.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg-menu.jpg"))); // NOI18N
+        blackground.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(blackground, javax.swing.GroupLayout.PREFERRED_SIZE, 842, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(blackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(blackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
-        // TODO add your handling code here:
-        txtSearchItem.setText("");
-    }//GEN-LAST:event_btneditActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        int selectedRow = jTable_Menu.getSelectedRow();
 
-    private void btnAddMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMenuActionPerformed
-        // TODO add your handling code here:
-        try {
-            /**Search Data*/
-            Connection conn = DBConnection.getConnection();
-            String searchInput = txtSearchItem.getText();
-            String selectSql = "SELECT id, name, price, quantity FROM product WHERE id = ? OR name = ?";
-            PreparedStatement selectPst = conn.prepareStatement(selectSql);
-            selectPst.setString(1, searchInput);
-            selectPst.setString(2, searchInput);
-            ResultSet rs = selectPst.executeQuery();
-            boolean itemFound = false;
-            /**Get Value of Data*/
-            while (rs.next()) {
-                itemFound = true;
-                int Id = rs.getInt("id"); /**Get id*/
-                String Name = rs.getString("name"); /**Get name*/
-                int Price = rs.getInt("price"); /**Get price*/
-                int QStock = rs.getInt("quantity"); /**Get quantity*/
-                /**Get check if Out of stock*/
-                if (QStock > 0) {
-                    Food f = new Food();
-                    f.setName(Name);
-                    f.setPrice(Price);
-                    f.setQuantity(1);
-                    client.addFood(f);
-                    /**Update Quantity*/
-                    String updateSql = "UPDATE product SET quantity = quantity - 1 WHERE id = ?";
-                    PreparedStatement updatePst = conn.prepareStatement(updateSql);
-                    updatePst.setInt(1, Id);
-                    updatePst.executeUpdate();
-                }else{
-                    javax.swing.JOptionPane.showMessageDialog(this, Name + " Sold Out", "Out of sale", javax.swing.JOptionPane.WARNING_MESSAGE);
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a menu item first.");
+            return;
+        }
+
+        // Retrieve data from the table
+        int id = Integer.parseInt(jTable_Menu.getValueAt(selectedRow, 0).toString());
+        String name = jTable_Menu.getValueAt(selectedRow, 1).toString();
+        double price = Double.parseDouble(jTable_Menu.getValueAt(selectedRow, 2).toString());
+        int stock = Integer.parseInt(jTable_Menu.getValueAt(selectedRow, 3).toString());
+
+        if (stock <= 0) {
+            JOptionPane.showMessageDialog(this, name + " is out of stock.");
+            return;
+        }
+
+        // Add to cart
+        Food f = new Food();
+        f.setName(name);
+        f.setPrice((int) price);  // Ensure correct casting if double
+        f.setQuantity(1);
+        client.addFood(f);
+
+        // Update Database
+        try (Connection conn = DBConnection.getConnection()) {
+            String updateSql = "UPDATE product SET quantity = quantity - 1 WHERE id = ?";
+            PreparedStatement pst = conn.prepareStatement(updateSql);
+            pst.setInt(1, id);
+            pst.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        loadTable();      // Reload table data
+        CartTable();      // Update cart UI
+        labPrice.setText(client.getTotalPrice() + "");
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        try (Connection conn = DBConnection.getConnection()) {
+
+            // Restore stock back to database
+            for (Food f : client.getFoods()) {
+                String updateSql = "UPDATE product SET quantity = quantity + ? WHERE name = ?";
+                PreparedStatement pst = conn.prepareStatement(updateSql);
+                pst.setInt(1, f.getQuantity());
+                pst.setString(2, f.getName());
+                pst.executeUpdate();
             }
-        }
-            rs.close();
-            selectPst.close();
-            if (itemFound) {
-                loadTable(); 
-                CartTable();
-                labPrice.setText(String.valueOf(client.getTotalPrice())); 
-            }else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Not found", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-            }      
-        txtSearchItem.setText("");
-        conn.close();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_btnAddMenuActionPerformed
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        mainMenu.setVisible(true);
-    }//GEN-LAST:event_BackActionPerformed
+            // Clear cart memory
+            client.clearFoods();
 
-    private void btnCheckBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckBillActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) Cart.getModel();
-        while(model.getRowCount() > 0){
+            // Refresh UI
+            loadTable();
+            CartTable();
+            labPrice.setText("0");
+
+            JOptionPane.showMessageDialog(this, "Cart has been reset.");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable_Cart.getModel();
+        while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
         this.client = new Client();
         labPrice.setText(String.valueOf(client.getTotalPrice()));
-    }//GEN-LAST:event_btnCheckBillActionPerformed
+    }//GEN-LAST:event_btnBillActionPerformed
+
+    private void btnBacktoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBacktoMenuActionPerformed
+        this.setVisible(false);
+        mainMenu.setVisible(true);
+    }//GEN-LAST:event_btnBacktoMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,35 +341,35 @@ public class frame_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Back;
-    private javax.swing.JTable Cart;
     private javax.swing.JPanel blackground;
-    private javax.swing.JButton btnAddMenu;
-    private javax.swing.JButton btnCheckBill;
-    private javax.swing.JButton btnedit;
+    private com.mycompany.UI.RoundButton btnAdd;
+    private com.mycompany.UI.RoundButton btnBacktoMenu;
+    private com.mycompany.UI.RoundButton btnBill;
+    private com.mycompany.UI.RoundButton btnReset;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable_Cart;
+    private javax.swing.JTable jTable_Menu;
     private javax.swing.JLabel labPrice;
-    private javax.swing.JLabel title;
-    private javax.swing.JTextField txtSearchItem;
+    private com.mycompany.UI.CustomHeaderPanel panel_Header;
     // End of variables declaration//GEN-END:variables
-/** Table Reload info automatically*/
+/**
+     * Table Reload info automatically
+     */
     private void CartTable() {
-        DefaultTableModel model = (DefaultTableModel) Cart.getModel();
-        while(model.getRowCount() > 0){
+        DefaultTableModel model = (DefaultTableModel) jTable_Cart.getModel();
+        while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
-        for(Food menu : client.getFoods()){
+        for (Food menu : client.getFoods()) {
             model.addRow(new Object[0]);
-            model.setValueAt(menu.getName(), model.getRowCount()-1, 0);
-            model.setValueAt(menu.getQuantity(), model.getRowCount()-1, 1);
-            model.setValueAt(menu.getPrice(), model.getRowCount()-1, 2);
+            model.setValueAt(menu.getName(), model.getRowCount() - 1, 0);
+            model.setValueAt(menu.getQuantity(), model.getRowCount() - 1, 1);
+            model.setValueAt(menu.getPrice(), model.getRowCount() - 1, 2);
         }
     }
 

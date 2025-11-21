@@ -43,8 +43,6 @@ public class frame_Table extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         labState1 = new javax.swing.JLabel();
         labTable = new javax.swing.JLabel();
@@ -101,32 +99,16 @@ public class frame_Table extends javax.swing.JFrame {
         btnBill8 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         labPrice8 = new javax.swing.JLabel();
-        Back = new javax.swing.JButton();
+        panel_Header = new com.mycompany.UI.CustomHeaderPanel();
+        jLabel2 = new javax.swing.JLabel();
+        btnBack = new com.mycompany.UI.RoundButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(216, 181, 151));
-
-        jPanel2.setBackground(new java.awt.Color(249, 217, 170));
-
-        jLabel1.setText("Table");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(493, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(430, 430, 430))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(41, 41, 41))
-        );
+        jPanel1.setBackground(new java.awt.Color(246, 235, 218));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setPreferredSize(new java.awt.Dimension(200, 200));
 
@@ -193,6 +175,8 @@ public class frame_Table extends javax.swing.JFrame {
                     .addComponent(btnBill1))
                 .addGap(26, 26, 26))
         );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel4.setPreferredSize(new java.awt.Dimension(200, 200));
@@ -261,6 +245,8 @@ public class frame_Table extends javax.swing.JFrame {
                 .addGap(26, 26, 26))
         );
 
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
+
         jPanel5.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState3.setText("Empty");
@@ -324,6 +310,8 @@ public class frame_Table extends javax.swing.JFrame {
                     .addComponent(btnBill3))
                 .addGap(24, 24, 24))
         );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
 
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 200));
 
@@ -391,6 +379,8 @@ public class frame_Table extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, -1, -1));
+
         jPanel7.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState5.setText("Empty");
@@ -454,6 +444,8 @@ public class frame_Table extends javax.swing.JFrame {
                     .addComponent(btnBill5))
                 .addGap(21, 21, 21))
         );
+
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
         jPanel8.setPreferredSize(new java.awt.Dimension(200, 200));
 
@@ -519,6 +511,8 @@ public class frame_Table extends javax.swing.JFrame {
                 .addGap(21, 21, 21))
         );
 
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
+
         jPanel9.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState7.setText("Empty");
@@ -582,6 +576,8 @@ public class frame_Table extends javax.swing.JFrame {
                     .addComponent(btnBill7))
                 .addGap(20, 20, 20))
         );
+
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
 
         jPanel10.setPreferredSize(new java.awt.Dimension(200, 200));
 
@@ -649,62 +645,40 @@ public class frame_Table extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        Back.setText("Back");
-        Back.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 340, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setText("Table");
+
+        javax.swing.GroupLayout panel_HeaderLayout = new javax.swing.GroupLayout(panel_Header);
+        panel_Header.setLayout(panel_HeaderLayout);
+        panel_HeaderLayout.setHorizontalGroup(
+            panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_HeaderLayout.createSequentialGroup()
+                .addGap(416, 416, 416)
+                .addComponent(jLabel2)
+                .addContainerGap(422, Short.MAX_VALUE))
+        );
+        panel_HeaderLayout.setVerticalGroup(
+            panel_HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_HeaderLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(panel_Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 900, 80));
+
+        btnBack.setText("Back to Menu");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 553, -1, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Back)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Back)
-                .addContainerGap(10, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg-Table.jpg"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 610));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -734,12 +708,6 @@ public class frame_Table extends javax.swing.JFrame {
             menuPage.UpdateUI(TableNo);
         }
     }//GEN-LAST:event_btnAddtble1ActionPerformed
-
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        mainMenu.setVisible(true);
-    }//GEN-LAST:event_BackActionPerformed
 
     private void btnAddtble2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble2ActionPerformed
         // TODO add your handling code here:
@@ -926,6 +894,11 @@ public class frame_Table extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Payed");
     }//GEN-LAST:event_btnBill8ActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.setVisible(false);
+        mainMenu.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -952,7 +925,6 @@ public class frame_Table extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Back;
     private javax.swing.JButton btnAddtble1;
     private javax.swing.JButton btnAddtble2;
     private javax.swing.JButton btnAddtble3;
@@ -961,6 +933,7 @@ public class frame_Table extends javax.swing.JFrame {
     private javax.swing.JButton btnAddtble6;
     private javax.swing.JButton btnAddtble7;
     private javax.swing.JButton btnAddtble8;
+    private com.mycompany.UI.RoundButton btnBack;
     private javax.swing.JButton btnBill1;
     private javax.swing.JButton btnBill2;
     private javax.swing.JButton btnBill3;
@@ -980,6 +953,7 @@ public class frame_Table extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -987,7 +961,6 @@ public class frame_Table extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -1012,6 +985,7 @@ public class frame_Table extends javax.swing.JFrame {
     private javax.swing.JLabel labState7;
     private javax.swing.JLabel labState8;
     private javax.swing.JLabel labTable;
+    private com.mycompany.UI.CustomHeaderPanel panel_Header;
     // End of variables declaration//GEN-END:variables
 
     private void BuiltTable() {
