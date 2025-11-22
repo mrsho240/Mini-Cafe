@@ -4,10 +4,26 @@
  */
 package com.mycompany.mini.cafe;
 
+import com.itextpdf.text.BaseColor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Phrase;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -297,14 +313,201 @@ public class frame_Menu extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_btnResetActionPerformed
+    private PdfPCell headerCell(String text) {
+        PdfPCell cell = new PdfPCell(new Phrase(text));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        return cell;
+    }
 
-    private void btnBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillActionPerformed
-        DefaultTableModel model = (DefaultTableModel) jTable_Cart.getModel();
-        while (model.getRowCount() > 0) {
-            model.removeRow(0);
+    private PdfPCell normalCell(String text) {
+        return new PdfPCell(new Phrase(text));
+    }
+
+    private PdfPCell centerCell(String text) {
+        PdfPCell cell = new PdfPCell(new Phrase(text));
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        return cell;
+    }
+
+    private PdfPCell rightCell(String text) {
+        PdfPCell cell = new PdfPCell(new Phrase(text));
+        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        return cell;
+    }
+
+    private PdfPCell noBorderCell(String text) {
+        PdfPCell cell = new PdfPCell(new Phrase(text));
+        cell.setBorder(PdfPCell.NO_BORDER);
+        return cell;
+    }
+
+    private PdfPCell noBorderRightCell(String text) {
+        PdfPCell cell = new PdfPCell(new Phrase(text));
+        cell.setBorder(PdfPCell.NO_BORDER);
+        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        return cell;
+    }
+
+    private Paragraph noBorderParagraph(String t) {
+        Paragraph p = new Paragraph(t);
+        p.setAlignment(Element.ALIGN_LEFT);
+        return p;
+    }
+
+    private void addLine(Document doc) throws DocumentException {
+        doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------\n"));
+    }
+
+    private void generateBillPDF() {
+        try {
+            String filePath = "bill.pdf";
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            // ---------------- HEADER ----------------
+            Font header = new Font(Font.FontFamily.HELVETICA, 22, Font.BOLD);
+            Font normal = new Font(Font.FontFamily.HELVETICA, 12);
+            Font bold = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
+
+            Paragraph shop = new Paragraph("Mini-Cafe", header);
+            shop.setAlignment(Element.ALIGN_CENTER);
+            document.add(shop);
+
+            document.add(new Paragraph("UWU 258", normal));
+            document.add(new Paragraph("City Index - 02025", normal));
+            document.add(new Paragraph("Tel.: +456-468-987-02\n\n", normal));
+
+            addLine(document);
+
+            // ---------------- STORE INFO ----------------
+            PdfPTable info = new PdfPTable(3);
+            info.setWidthPercentage(100);
+            info.setWidths(new float[]{2, 2, 2});
+
+            info.addCell(noBorderCell("Store: 25896"));
+            info.addCell(noBorderCell("22-11-2025"));
+            info.addCell(noBorderCell("12:02 PM"));
+            document.add(info);
+
+            document.add(noBorderParagraph("Server:     NY 58/8"));
+            document.add(noBorderParagraph("Survey code: 0000-2555-2588-4545-69\n"));
+
+            addLine(document);
+
+            // ---------------- ITEM TABLE ----------------
+            PdfPTable orderTable = new PdfPTable(3);
+            orderTable.setWidthPercentage(100);
+            orderTable.setWidths(new float[]{4, 1, 2});
+
+            orderTable.addCell(headerCell("Name"));
+            orderTable.addCell(headerCell("Qty"));
+            orderTable.addCell(headerCell("Price"));
+
+            // read from cart
+            DefaultTableModel cart = (DefaultTableModel) jTable_Cart.getModel();
+
+            double total = 0;
+
+            for (int i = 0; i < cart.getRowCount(); i++) {
+                String name = cart.getValueAt(i, 0).toString();
+                int qty = Integer.parseInt(cart.getValueAt(i, 1).toString());
+                double price = Double.parseDouble(cart.getValueAt(i, 2).toString());
+
+                total += price;
+
+                orderTable.addCell(normalCell(name));
+                orderTable.addCell(centerCell(String.valueOf(qty)));
+                orderTable.addCell(rightCell(String.format("$%.2f", price)));
+            }
+
+            document.add(orderTable);
+
+            addLine(document);
+
+            // ---------------- PRICE SUMMARY ----------------
+
+
+            PdfPTable priceTable = new PdfPTable(2);
+            priceTable.setWidthPercentage(100);
+            priceTable.setWidths(new float[]{4, 2});
+
+            priceTable.addCell(noBorderCell("SUB TOTAL :"));
+            priceTable.addCell(noBorderRightCell(String.format("$%.2f", total)));
+
+
+            document.add(priceTable);
+
+            addLine(document);
+
+            // ---------------- THANK YOU ----------------
+            Paragraph thanks = new Paragraph("THANK YOU!\n\n", bold);
+            thanks.setAlignment(Element.ALIGN_CENTER);
+            document.add(thanks);
+
+
+            document.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error creating PDF");
         }
-        this.client = new Client();
-        labPrice.setText(String.valueOf(client.getTotalPrice()));
+    }
+
+    private void openPDF() {
+        try {
+            File file = new File("bill.pdf");
+            if (!Desktop.isDesktopSupported()) {
+                JOptionPane.showMessageDialog(null, "Desktop is not supported on this system.");
+                return;
+            }
+
+            Desktop desktop = Desktop.getDesktop();
+            if (file.exists()) {
+                desktop.open(file);
+            } else {
+                JOptionPane.showMessageDialog(null, "PDF file not found.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error opening PDF: " + e.getMessage());
+        }
+    }
+
+    private void clearCartAfterBill() {
+        try (Connection conn = DBConnection.getConnection()) {
+
+            // Increase stock back into database (if needed)
+            for (Food f : client.getFoods()) {
+                String updateSql = "UPDATE product SET quantity = quantity + ? WHERE name = ?";
+                PreparedStatement pst = conn.prepareStatement(updateSql);
+                pst.setInt(1, f.getQuantity());
+                pst.setString(2, f.getName());
+                pst.executeUpdate();
+            }
+
+            // Clear foods from memory
+            client.clearFoods();
+
+            // Clear JTable cart UI
+            CartTable();
+
+            // Reset total price label
+            labPrice.setText("0");
+
+            // Reload menu table after stock restored
+            loadTable();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void btnBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBillActionPerformed
+        generateBillPDF();
+        openPDF();
+        clearCartAfterBill();
     }//GEN-LAST:event_btnBillActionPerformed
 
     private void btnBacktoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBacktoMenuActionPerformed
@@ -362,11 +565,18 @@ public class frame_Menu extends javax.swing.JFrame {
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
+
         for (Food menu : client.getFoods()) {
-            model.addRow(new Object[0]);
-            model.setValueAt(menu.getName(), model.getRowCount() - 1, 0);
-            model.setValueAt(menu.getQuantity(), model.getRowCount() - 1, 1);
-            model.setValueAt(menu.getPrice(), model.getRowCount() - 1, 2);
+
+            int qty = menu.getQuantity();
+            double unitPrice = menu.getPrice();
+            double totalPrice = qty * unitPrice;
+
+            model.addRow(new Object[]{
+                menu.getName(),
+                qty,
+                totalPrice
+            });
         }
     }
 

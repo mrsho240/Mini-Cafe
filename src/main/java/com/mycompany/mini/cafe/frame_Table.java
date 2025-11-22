@@ -4,6 +4,17 @@
  */
 package com.mycompany.mini.cafe;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.*;
 import javax.swing.JOptionPane;
 
@@ -12,25 +23,27 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class frame_Table extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_Table.class.getName());
     private frame_selection mainMenu;
     private frame_AddMenuToTable menuPage = null;
     private List<Table> tableList = new ArrayList<>();
     private List<javax.swing.JLabel> Pricelist = new ArrayList<>();
     private List<javax.swing.JLabel> StateList = new ArrayList<>();
+
     /**
      * Creates new form fmTable
      */
     public frame_Table() {
         initComponents();
     }
+
     public frame_Table(frame_selection mainMenu) {
         initComponents();
         this.mainMenu = mainMenu;
         BuiltTable();
-        Pricelist = Arrays.asList(labPrice1, labPrice2, labPrice3, labPrice4,labPrice5, labPrice6, labPrice7, labPrice8);
-        StateList = Arrays.asList(labState1, labState2, labState3, labState4,labState5, labState6, labState7, labState8);
+        Pricelist = Arrays.asList(labPrice1, labPrice2, labPrice3, labPrice4, labPrice5, labPrice6, labPrice7, labPrice8);
+        StateList = Arrays.asList(labState1, labState2, labState3, labState4, labState5, labState6, labState7, labState8);
     }
 
     /**
@@ -693,18 +706,111 @@ public class frame_Table extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private String generatePDFBill(Table table, int tableNumber) {
+        try {
+            String fileName = "Bill_Table_" + tableNumber + ".pdf";
+            Document doc = new Document();
+            PdfWriter.getInstance(doc, new FileOutputStream(fileName));
+            doc.open();
 
+            // ----- TITLE -----
+            Font titleFont = new Font(Font.FontFamily.COURIER, 18, Font.BOLD);
+            Paragraph title = new Paragraph("RECEIPT\nMINI CAFE", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            title.setSpacingAfter(15);
+            doc.add(title);
+
+            // ----- INFO -----
+            doc.add(new Paragraph("Address: 123 Sample Road, Bangkok"));
+            doc.add(new Paragraph("Tel: 012-345-6789"));
+            doc.add(new Paragraph("\n----------------------------------------------------------------------------------------------------------------------------------"));
+
+            // Date Time
+            Paragraph dt = new Paragraph(
+                    "DATE: " + java.time.LocalDate.now()
+                    + "       TIME: " + java.time.LocalTime.now().withNano(0));
+            dt.setSpacingBefore(5);
+            dt.setSpacingAfter(5);
+            doc.add(dt);
+
+            doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------\n"));
+
+            // ===== TABLE =====
+            PdfPTable pdfTable = new PdfPTable(3);
+            pdfTable.setWidths(new float[]{1f, 3f, 2f});
+            pdfTable.setWidthPercentage(100);
+            pdfTable.setSpacingBefore(10);
+            pdfTable.setSpacingAfter(10);
+
+            // Header
+            pdfTable.addCell(new PdfPCell(new Phrase("Quantity")));
+            pdfTable.addCell(new PdfPCell(new Phrase("Name")));
+            pdfTable.addCell(new PdfPCell(new Phrase("Amount")));
+
+            // Rows
+            for (Food f : table.getFoods()) {
+                pdfTable.addCell(String.valueOf(f.getQuantity()));
+                pdfTable.addCell(f.getName());
+                pdfTable.addCell("฿" + (f.getQuantity() * f.getPrice()));
+            }
+
+            doc.add(pdfTable);
+
+            // TOTAL
+            doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+            Paragraph total = new Paragraph(
+                    "Total                              ฿" + table.getTotalPrice() + " Baht"
+            );
+            total.setSpacingBefore(5);
+            total.setSpacingAfter(10);
+            doc.add(total);
+
+            doc.add(new Paragraph("----------------------------------------------------------------------------------------------------------------------------------"));
+            Paragraph thank = new Paragraph("THANK YOU!",
+                    new Font(Font.FontFamily.COURIER, 14, Font.BOLD));
+            thank.setAlignment(Element.ALIGN_CENTER);
+            doc.add(thank);
+
+            doc.close();
+            return fileName;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            return null;
+        }
+    }
+
+    private void openPDF(String fileName) {
+        try {
+            File file = new File(fileName);
+
+            if (!Desktop.isDesktopSupported()) {
+                JOptionPane.showMessageDialog(null, "Desktop is not supported.");
+                return;
+            }
+
+            Desktop desktop = Desktop.getDesktop();
+            if (file.exists()) {
+                desktop.open(file);
+            } else {
+                JOptionPane.showMessageDialog(null, "PDF file not found: " + fileName);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error opening PDF: " + e.getMessage());
+        }
+    }
     private void btnAddtble1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble1ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(0);
-        if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this,TableNo);
-        }else{
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
             menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
-        if(menuPage != null){
+        if (menuPage != null) {
             menuPage.UpdateUI(TableNo);
         }
         menuPage.loadTable();
@@ -713,14 +819,14 @@ public class frame_Table extends javax.swing.JFrame {
     private void btnAddtble2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble2ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(1);
-        if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this,TableNo);
-        }else{
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
             menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
-        if(menuPage != null){
+        if (menuPage != null) {
             menuPage.UpdateUI(TableNo);
         }
         menuPage.loadTable();
@@ -729,14 +835,14 @@ public class frame_Table extends javax.swing.JFrame {
     private void btnAddtble3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble3ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(2);
-        if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this,TableNo);
-        }else{
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
             menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
-        if(menuPage != null){
+        if (menuPage != null) {
             menuPage.UpdateUI(TableNo);
         }
         menuPage.loadTable();
@@ -745,14 +851,14 @@ public class frame_Table extends javax.swing.JFrame {
     private void btnAddtble5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble5ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(4);
-        if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this,TableNo);
-        }else{
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
             menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
-        if(menuPage != null){
+        if (menuPage != null) {
             menuPage.UpdateUI(TableNo);
         }
         menuPage.loadTable();
@@ -761,14 +867,14 @@ public class frame_Table extends javax.swing.JFrame {
     private void btnAddtble6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble6ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(5);
-        if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this,TableNo);
-        }else{
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
             menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
-        if(menuPage != null){
+        if (menuPage != null) {
             menuPage.UpdateUI(TableNo);
         }
         menuPage.loadTable();
@@ -777,14 +883,14 @@ public class frame_Table extends javax.swing.JFrame {
     private void btnAddtble7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble7ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(6);
-        if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this,TableNo);
-        }else{
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
             menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
-        if(menuPage != null){
+        if (menuPage != null) {
             menuPage.UpdateUI(TableNo);
         }
         menuPage.loadTable();
@@ -793,14 +899,14 @@ public class frame_Table extends javax.swing.JFrame {
     private void btnAddtble8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble8ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(7);
-        if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this,TableNo);
-        }else{
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
             menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
-        if(menuPage != null){
+        if (menuPage != null) {
             menuPage.UpdateUI(TableNo);
         }
         menuPage.loadTable();
@@ -809,97 +915,193 @@ public class frame_Table extends javax.swing.JFrame {
     private void btnAddtble4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble4ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(3);
-        if(menuPage == null){
-            menuPage = new frame_AddMenuToTable(this,TableNo);
-        }else{
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
             menuPage.setTable(TableNo);
         }
         this.setVisible(false);
         menuPage.setVisible(true);
-        if(menuPage != null){
+        if (menuPage != null) {
             menuPage.UpdateUI(TableNo);
         }
         menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble4ActionPerformed
 
     private void btnBill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill1ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(0);
-        TableNo.setState(false);
-        TableNo.setFoods(new ArrayList<>());
-        labState1.setText(TableNo.getState());
-        labPrice1.setText(String.valueOf(TableNo.getTotalPrice()));
-        JOptionPane.showMessageDialog(null,"Payed");
+        int tableIndex = 0; // Table 1
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
     }//GEN-LAST:event_btnBill1ActionPerformed
 
     private void btnBill2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill2ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(1);
-        TableNo.setState(false);
-        TableNo.setFoods(new ArrayList<>());
-        labState2.setText(TableNo.getState());
-        labPrice2.setText(String.valueOf(TableNo.getTotalPrice()));
-        JOptionPane.showMessageDialog(null,"Payed");
+        int tableIndex = 1; // Table 2
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
     }//GEN-LAST:event_btnBill2ActionPerformed
 
     private void btnBill3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill3ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(2);
-        TableNo.setState(false);
-        TableNo.setFoods(new ArrayList<>());
-        labState3.setText(TableNo.getState());
-        labPrice3.setText(String.valueOf(TableNo.getTotalPrice()));
-        JOptionPane.showMessageDialog(null,"Payed");
+        int tableIndex = 2; // Table 3
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
     }//GEN-LAST:event_btnBill3ActionPerformed
 
     private void btnBill4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill4ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(3);
-        TableNo.setState(false);
-        TableNo.setFoods(new ArrayList<>());
-        labState4.setText(TableNo.getState());
-        labPrice4.setText(String.valueOf(TableNo.getTotalPrice()));
-        JOptionPane.showMessageDialog(null,"Payed");
+        int tableIndex = 3; // Table 4
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
     }//GEN-LAST:event_btnBill4ActionPerformed
 
     private void btnBill5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill5ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(4);
-        TableNo.setState(false);
-        TableNo.setFoods(new ArrayList<>());
-        labState5.setText(TableNo.getState());
-        labPrice5.setText(String.valueOf(TableNo.getTotalPrice()));
-        JOptionPane.showMessageDialog(null,"Payed");
+        int tableIndex = 4; // Table 5
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
     }//GEN-LAST:event_btnBill5ActionPerformed
 
     private void btnBill6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill6ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(5);
-        TableNo.setState(false);
-        TableNo.setFoods(new ArrayList<>());
-        labState6.setText(TableNo.getState());
-        labPrice6.setText(String.valueOf(TableNo.getTotalPrice()));
-        JOptionPane.showMessageDialog(null,"Payed");
+        int tableIndex = 5; // Table 6
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
     }//GEN-LAST:event_btnBill6ActionPerformed
 
     private void btnBill7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill7ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(6);
-        TableNo.setState(false);
-        TableNo.setFoods(new ArrayList<>());
-        labState7.setText(TableNo.getState());
-        labPrice7.setText(String.valueOf(TableNo.getTotalPrice()));
-        JOptionPane.showMessageDialog(null,"Payed");
+        int tableIndex = 6; // Table 7
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
     }//GEN-LAST:event_btnBill7ActionPerformed
 
     private void btnBill8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill8ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(7);
-        TableNo.setState(false);
-        TableNo.setFoods(new ArrayList<>());
-        labState8.setText(TableNo.getState());
-        labPrice8.setText(String.valueOf(TableNo.getTotalPrice()));
-        JOptionPane.showMessageDialog(null,"Payed");
+        int tableIndex = 7; // Table 8
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
     }//GEN-LAST:event_btnBill8ActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -997,14 +1199,14 @@ public class frame_Table extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void BuiltTable() {
-        for(int i=0; i<8; i++){
+        for (int i = 0; i < 8; i++) {
             Table table = new Table();
             tableList.add(table);
         }
     }
 
     public void UpdateUI() {
-        for(int i=0; i<8; i++){
+        for (int i = 0; i < 8; i++) {
             Table table = tableList.get(i);
             javax.swing.JLabel lisprice = Pricelist.get(i);
             javax.swing.JLabel lisstate = StateList.get(i);
