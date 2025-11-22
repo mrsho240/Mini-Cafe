@@ -30,7 +30,7 @@ public class frame_Table extends javax.swing.JFrame {
     private List<Table> tableList = new ArrayList<>();
     private List<javax.swing.JLabel> Pricelist = new ArrayList<>();
     private List<javax.swing.JLabel> StateList = new ArrayList<>();
-
+    private admin admin;
     /**
      * Creates new form fmTable
      */
@@ -38,9 +38,10 @@ public class frame_Table extends javax.swing.JFrame {
         initComponents();
     }
 
-    public frame_Table(frame_selection mainMenu) {
+    public frame_Table(frame_selection mainMenu,admin admin) {
         initComponents();
         this.mainMenu = mainMenu;
+        this.admin = admin;
         BuiltTable();
         Pricelist = Arrays.asList(labPrice1, labPrice2, labPrice3, labPrice4, labPrice5, labPrice6, labPrice7, labPrice8);
         StateList = Arrays.asList(labState1, labState2, labState3, labState4, labState5, labState6, labState7, labState8);
@@ -944,6 +945,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
         // Clear table after payment
         t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
         Pricelist.get(tableIndex).setText("0");
         StateList.get(tableIndex).setText("Empty");
 
@@ -966,6 +968,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
         // Clear table after payment
         t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
         Pricelist.get(tableIndex).setText("0");
         StateList.get(tableIndex).setText("Empty");
 
@@ -988,6 +991,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
         // Clear table after payment
         t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
         Pricelist.get(tableIndex).setText("0");
         StateList.get(tableIndex).setText("Empty");
 
@@ -1010,6 +1014,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
         // Clear table after payment
         t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
         Pricelist.get(tableIndex).setText("0");
         StateList.get(tableIndex).setText("Empty");
 
@@ -1032,6 +1037,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
         // Clear table after payment
         t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
         Pricelist.get(tableIndex).setText("0");
         StateList.get(tableIndex).setText("Empty");
 
@@ -1054,6 +1060,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
         // Clear table after payment
         t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
         Pricelist.get(tableIndex).setText("0");
         StateList.get(tableIndex).setText("Empty");
 
@@ -1076,6 +1083,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
         // Clear table after payment
         t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
         Pricelist.get(tableIndex).setText("0");
         StateList.get(tableIndex).setText("Empty");
 
@@ -1098,6 +1106,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
         // Clear table after payment
         t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
         Pricelist.get(tableIndex).setText("0");
         StateList.get(tableIndex).setText("Empty");
 
@@ -1106,6 +1115,7 @@ private String generatePDFBill(Table table, int tableNumber) {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.setVisible(false);
+        mainMenu.UpdateUI(admin);
         mainMenu.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 

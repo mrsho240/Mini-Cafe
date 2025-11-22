@@ -36,6 +36,7 @@ public class frame_Menu extends javax.swing.JFrame {
     private frame_selection mainMenu;
     private Client client;
     private Table table;
+    private admin admin;
 
     /**
      * Creates new form frame_Table
@@ -46,9 +47,10 @@ public class frame_Menu extends javax.swing.JFrame {
         this.client = new Client();
     }
 
-    public frame_Menu(frame_selection mainMenu) {
+    public frame_Menu(frame_selection mainMenu,admin admin) {
         initComponents();
         loadTable();
+        this.admin = admin;
         this.mainMenu = mainMenu;
         this.client = new Client();
     }
@@ -142,7 +144,7 @@ public class frame_Menu extends javax.swing.JFrame {
         });
         blackground.add(btnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 480, 110, 30));
 
-        btnBill.setText("Chack Bill");
+        btnBill.setText("Check Bill");
         btnBill.setToolTipText("");
         btnBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -493,7 +495,10 @@ public class frame_Menu extends javax.swing.JFrame {
 
             // Clear JTable cart UI
             CartTable();
-
+            
+            //Calculate Total income
+            admin.setTotalPrice(Integer.valueOf(labPrice.getText()));
+            
             // Reset total price label
             labPrice.setText("0");
 
@@ -512,6 +517,7 @@ public class frame_Menu extends javax.swing.JFrame {
 
     private void btnBacktoMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBacktoMenuActionPerformed
         this.setVisible(false);
+        mainMenu.UpdateUI(admin);
         mainMenu.setVisible(true);
     }//GEN-LAST:event_btnBacktoMenuActionPerformed
 

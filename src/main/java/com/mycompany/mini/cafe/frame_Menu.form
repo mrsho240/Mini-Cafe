@@ -126,7 +126,7 @@
         </Component>
         <Component class="com.mycompany.UI.RoundButton" name="btnBill">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Chack Bill"/>
+            <Property name="text" type="java.lang.String" value="Check Bill"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>

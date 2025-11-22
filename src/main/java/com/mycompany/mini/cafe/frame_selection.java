@@ -14,14 +14,18 @@ public class frame_selection extends javax.swing.JFrame {
     private frame_Table tablePage = null; /** collect table page */
     private frame_Menu menuPage = null; /** collect menu page */
     private frame_Edit editPage = null; /** collect edit page */
+    private admin admin = new admin();
     public frame_selection() {
         initComponents();
     }
+    
     public frame_selection(String role) {
         initComponents();
         label_status.setText(role);
         if ("cashier".equals(role)){
             btnEditPage.setVisible(false);
+            jLabel3.setVisible(false);
+            jLabel4.setVisible(false);
         }
     }
 
@@ -33,6 +37,8 @@ public class frame_selection extends javax.swing.JFrame {
         btnEditPage = new com.mycompany.UI.CustomCardButton();
         btnMenu = new com.mycompany.UI.CustomCardButton();
         btnTable = new com.mycompany.UI.CustomCardButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         panel_Header = new com.mycompany.UI.CustomHeaderPanel();
@@ -76,6 +82,16 @@ public class frame_selection extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 140, 130));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 204, 102));
+        jLabel4.setText("0");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 204, 102));
+        jLabel3.setText("Income:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg-image1.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 950, 510));
@@ -137,7 +153,7 @@ public class frame_selection extends javax.swing.JFrame {
 
     private void btnTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTableActionPerformed
         if(tablePage == null){
-            tablePage = new frame_Table(this); 
+            tablePage = new frame_Table(this,admin); 
         }
         this.setVisible(false);
         tablePage.setVisible(true);
@@ -146,7 +162,7 @@ public class frame_selection extends javax.swing.JFrame {
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         // TODO add your handling code here:
         if(menuPage == null){
-            menuPage = new frame_Menu(this); 
+            menuPage = new frame_Menu(this,admin); 
         }
         menuPage.loadTable();
         this.setVisible(false);
@@ -193,9 +209,15 @@ public class frame_selection extends javax.swing.JFrame {
     private com.mycompany.UI.CustomCardButton btnTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel label_status;
     private com.mycompany.UI.CustomHeaderPanel panel_Header;
     // End of variables declaration//GEN-END:variables
+
+    void UpdateUI(admin admin) {
+        jLabel4.setText(String.valueOf(admin.getTotalPrice()));
+    }
 }
