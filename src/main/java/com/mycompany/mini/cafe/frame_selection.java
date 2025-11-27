@@ -21,12 +21,8 @@ public class frame_selection extends javax.swing.JFrame {
     
     public frame_selection(String role) {
         initComponents();
-        label_status.setText(role);
-        if ("cashier".equals(role)){
-            btnEditPage.setVisible(false);
-            jLabel3.setVisible(false);
-            jLabel4.setVisible(false);
-        }
+        UpdateRole(role);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -37,6 +33,7 @@ public class frame_selection extends javax.swing.JFrame {
         btnEditPage = new com.mycompany.UI.CustomCardButton();
         btnMenu = new com.mycompany.UI.CustomCardButton();
         btnTable = new com.mycompany.UI.CustomCardButton();
+        jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -82,6 +79,14 @@ public class frame_selection extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 140, 130));
+
+        jButton1.setText("Logout");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 450, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 204, 102));
@@ -178,6 +183,13 @@ public class frame_selection extends javax.swing.JFrame {
         editPage.setVisible(true);
     }//GEN-LAST:event_btnEditPageActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        frame_login loginpage = new frame_login(this);
+        loginpage.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -207,6 +219,7 @@ public class frame_selection extends javax.swing.JFrame {
     private com.mycompany.UI.CustomCardButton btnEditPage;
     private com.mycompany.UI.CustomCardButton btnMenu;
     private com.mycompany.UI.CustomCardButton btnTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -217,7 +230,20 @@ public class frame_selection extends javax.swing.JFrame {
     private com.mycompany.UI.CustomHeaderPanel panel_Header;
     // End of variables declaration//GEN-END:variables
 
-    void UpdateUI(admin admin) {
+    public void UpdateUI(admin admin) {
         jLabel4.setText(String.valueOf(admin.getTotalPrice()));
+    }
+
+    public void UpdateRole(String role) {
+        label_status.setText(role);
+        if ("cashier".equals(role)){
+            btnEditPage.setVisible(false);
+            jLabel3.setVisible(false);
+            jLabel4.setVisible(false);
+        }else{
+            btnEditPage.setVisible(true);
+            jLabel3.setVisible(true);
+            jLabel4.setVisible(true);
+        }
     }
 }

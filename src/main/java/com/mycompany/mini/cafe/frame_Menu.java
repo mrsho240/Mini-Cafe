@@ -481,14 +481,7 @@ public class frame_Menu extends javax.swing.JFrame {
     private void clearCartAfterBill() {
         try (Connection conn = DBConnection.getConnection()) {
 
-            // Increase stock back into database (if needed)
-            for (Food f : client.getFoods()) {
-                String updateSql = "UPDATE product SET quantity = quantity + ? WHERE name = ?";
-                PreparedStatement pst = conn.prepareStatement(updateSql);
-                pst.setInt(1, f.getQuantity());
-                pst.setString(2, f.getName());
-                pst.executeUpdate();
-            }
+            
 
             // Clear foods from memory
             client.clearFoods();

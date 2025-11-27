@@ -17,12 +17,19 @@ import java.sql.SQLException;
 public class frame_login extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(frame_login.class.getName());
+    private frame_selection fs;
 
     public frame_login() {
         // Initialize initComponents 
         initComponents();
         setTitle("Mini-Cafe");
 
+    }
+    public frame_login(frame_selection fs) {
+        // Initialize initComponents 
+        initComponents();
+        setTitle("Mini-Cafe");
+        this.fs = fs;
     }
 
     @SuppressWarnings("unchecked")
@@ -114,7 +121,11 @@ public class frame_login extends javax.swing.JFrame {
             return;
         }
         JOptionPane.showMessageDialog(this, "Login successful! " + role);
-        frame_selection fs = new frame_selection(role);
+        if(fs == null){
+            fs = new frame_selection(role);
+        }else{
+            fs.UpdateRole(role);
+        }
         fs.setVisible(true);
         this.dispose();
 
