@@ -124,6 +124,7 @@ public class frame_Table extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(246, 235, 218));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState1.setText("Empty");
@@ -192,6 +193,7 @@ public class frame_Table extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel4.setPreferredSize(new java.awt.Dimension(200, 200));
 
@@ -261,6 +263,7 @@ public class frame_Table extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState3.setText("Empty");
@@ -327,6 +330,7 @@ public class frame_Table extends javax.swing.JFrame {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, -1, -1));
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState4.setText("Empty");
@@ -395,6 +399,7 @@ public class frame_Table extends javax.swing.JFrame {
 
         jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 110, -1, -1));
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState5.setText("Empty");
@@ -461,6 +466,7 @@ public class frame_Table extends javax.swing.JFrame {
 
         jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState6.setText("Empty");
@@ -527,6 +533,7 @@ public class frame_Table extends javax.swing.JFrame {
 
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState7.setText("Empty");
@@ -593,6 +600,7 @@ public class frame_Table extends javax.swing.JFrame {
 
         jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
 
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setPreferredSize(new java.awt.Dimension(200, 200));
 
         labState8.setText("Empty");
@@ -801,22 +809,6 @@ private String generatePDFBill(Table table, int tableNumber) {
             JOptionPane.showMessageDialog(null, "Error opening PDF: " + e.getMessage());
         }
     }
-    private void btnAddtble1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble1ActionPerformed
-        // TODO add your handling code here:
-        Table TableNo = tableList.get(0);
-        if (menuPage == null) {
-            menuPage = new frame_AddMenuToTable(this, TableNo);
-        } else {
-            menuPage.setTable(TableNo);
-        }
-        this.setVisible(false);
-        menuPage.setVisible(true);
-        if (menuPage != null) {
-            menuPage.UpdateUI(TableNo);
-        }
-        menuPage.loadTable();
-    }//GEN-LAST:event_btnAddtble1ActionPerformed
-
     private void btnAddtble2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble2ActionPerformed
         // TODO add your handling code here:
         Table TableNo = tableList.get(1);
@@ -928,29 +920,6 @@ private String generatePDFBill(Table table, int tableNumber) {
         }
         menuPage.loadTable();
     }//GEN-LAST:event_btnAddtble4ActionPerformed
-
-    private void btnBill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill1ActionPerformed
-        int tableIndex = 0; // Table 1
-        Table t = tableList.get(tableIndex);
-
-        if (t.getFoods().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Table is empty!");
-            return;
-        }
-
-        String fileName = generatePDFBill(t, tableIndex + 1);
-        if (fileName != null) {
-            openPDF(fileName);
-        }
-
-        // Clear table after payment
-        t.clearFoods();
-        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
-        Pricelist.get(tableIndex).setText("0");
-        StateList.get(tableIndex).setText("Empty");
-
-        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
-    }//GEN-LAST:event_btnBill1ActionPerformed
 
     private void btnBill2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill2ActionPerformed
         int tableIndex = 1; // Table 2
@@ -1118,6 +1087,45 @@ private String generatePDFBill(Table table, int tableNumber) {
         mainMenu.UpdateUI(admin);
         mainMenu.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnBill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBill1ActionPerformed
+        int tableIndex = 0; // Table 1
+        Table t = tableList.get(tableIndex);
+
+        if (t.getFoods().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Table is empty!");
+            return;
+        }
+
+        String fileName = generatePDFBill(t, tableIndex + 1);
+        if (fileName != null) {
+            openPDF(fileName);
+        }
+
+        // Clear table after payment
+        t.clearFoods();
+        admin.setTotalPrice(Integer.valueOf(Pricelist.get(tableIndex).getText()));
+        Pricelist.get(tableIndex).setText("0");
+        StateList.get(tableIndex).setText("Empty");
+
+        JOptionPane.showMessageDialog(this, "Bill generated & table cleared.");
+    }//GEN-LAST:event_btnBill1ActionPerformed
+
+    private void btnAddtble1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddtble1ActionPerformed
+        // TODO add your handling code here:
+        Table TableNo = tableList.get(0);
+        if (menuPage == null) {
+            menuPage = new frame_AddMenuToTable(this, TableNo);
+        } else {
+            menuPage.setTable(TableNo);
+        }
+        this.setVisible(false);
+        menuPage.setVisible(true);
+        if (menuPage != null) {
+            menuPage.UpdateUI(TableNo);
+        }
+        menuPage.loadTable();
+    }//GEN-LAST:event_btnAddtble1ActionPerformed
 
     /**
      * @param args the command line arguments
